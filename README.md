@@ -1,5 +1,6 @@
-# MakerHub Studio
-## Application Server
+![](docs/readme-logo.png)
+
+## MakerHub Studio Application Server
 This is the application server for the makerhub.studio app. It is the component between the client and the MySQL server.
 
 ### Getting Started
@@ -43,4 +44,4 @@ For deployment, you can use the same step by step tutorial as above. If you want
 * AsciiTextGenerator
 
 ### License
-This project is licensed under the GPLv3 license. See LICENSE.md for details.
+This project is licensed under the GPLv3 license. See [LICENSE.md](docs/LICENSE.md) for details.
