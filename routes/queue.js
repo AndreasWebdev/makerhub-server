@@ -30,7 +30,7 @@ router.route('/toggle').get(function(req, res, next) {
 	// Todo: Add Query to toggle queueOpen for User
 });
 
-router.route('/my').get(function(req, res, next) {
+router.route('/pending').get(function(req, res, next) {
 	let securityKey = req.query.key;
 	
 	db.query("SELECT * FROM levelqueue WHERE foruser = (SELECT id FROM users WHERE security_key = '" + securityKey + "');", function(error, results) {
