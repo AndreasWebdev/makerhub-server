@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
 	return res.send('API Status: ready!');
 });
 
-app.use('/debug', require('./routes/debug'));
 app.use('/security', require('./routes/security'));
 app.use('/queue', require('./routes/queue'));
 
