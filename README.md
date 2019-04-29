@@ -13,13 +13,19 @@ You will also need NodeJS Version 10 and NPM installed on your local machine. We
 #### Installing
 A step by step series of examples that tell you how to get a development env running.
 
-1. Setup your MySQL credentials in the config.json
-2. Install dependencies
+**Setup your MySQL credentials**
+
+By editing the config.json file
+
+**Install dependencies**
 ```
 cd makerhub-server
 npm install
 ```
-3. Run the server by running ```nodemon .``` or ```node .``` in a terminal.
+
+**Run the server**
+
+By running ```nodemon .``` or ```node .``` in a terminal.
 
 You can now check out if the API works by navigating to http://localhost:YOURPORT/ on your browser.
 
