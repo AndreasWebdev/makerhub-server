@@ -6,28 +6,28 @@ const db = require('../db');
 router.route('/add').get(function(req, res, next) {
 	let qForUser = req.query.forUser;
 	let qLevelCode = req.query.levelCode;
+	let qLevelTitle = req.query.levelTitle;
+	let qLevelCreator = req.query.levelCreator;
+	let qRequestedBy = req.query.requestedBy;
+	let qComment = req.query.comment;
+	let qRequestedTime = Date.now();
 	
-	/*
-	db.query("SELECT id FROM users WHERE username = '" + username + "' AND password = '" + password + "'", function(error, results) {
-		if(error) {
-			next(error);
-		} else {
-			if(results.length > 0) {
-				let userID = results[0].id;
-				let newKey = nanoid();
-				
-				// Set new SecKey
-				db.query("UPDATE `users` SET `security_key` = '" + newKey + "' WHERE `id` = " + userID);
-				
-				// Return SecKey
-				res.status(200);
-				res.send(JSON.stringify({key: newKey}));
-			} else {
-				// No user found
-				res.sendStatus(403);
-			}
-		}
-	}); */
+	// Todo: Add Query
+});
+
+router.route('/complete').get(function(req, res, next) {
+	let securityKey = req.query.key;
+	let qLevelID = req.query.levelID;
+	let qHighscoreTime = req.query.highscoreTime;
+	
+	// Todo: Add Query
+});
+
+router.route('/toggle').get(function(req, res, next) {
+	let securityKey = req.query.key;
+	let qNewStatus = req.query.newStatus;
+	
+	// Todo: Add Query to toggle queueOpen for User
 });
 
 router.route('/my').get(function(req, res, next) {
