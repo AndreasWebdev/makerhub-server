@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/debug', require('./routes/debug'));
 app.use('/security', require('./routes/security'));
+app.use('/queue', require('./routes/queue'));
 
 // Error Handling
 app.use(function(err, req, res, next) {
