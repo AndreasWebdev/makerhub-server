@@ -1,0 +1,7 @@
+{
+	"port": 1337,
+	"mysql_host": "localhost",
+	"mysql_user": "websmart",
+	"mysql_pass": "websmart",
+	"mysql_db": "makerhub"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "makerhub-server",
+  "version": "0.1.0",
+  "description": "MakerHub Studio Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreasWebdev/makerhub-server.git"
+  },
+  "author": "MakerHub",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreasWebdev/makerhub-server/issues"
+  },
+  "homepage": "https://github.com/AndreasWebdev/makerhub-server#readme",
+  "dependencies": {
+    "ascii-text-generator": "^1.0.5",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.3",
+    "mysql": "^2.17.1",
+    "nanoid": "^2.0.1"
+  }
+}
