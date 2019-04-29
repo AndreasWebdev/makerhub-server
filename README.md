@@ -1,5 +1,5 @@
 # MakerHub Studio
-# Application Server
+## Application Server
 This is the application server for the makerhub.studio app. It is the component between the client and the MySQL server.
 
 ### Getting Started
@@ -19,14 +19,7 @@ A step by step series of examples that tell you how to get a development env run
 cd makerhub-server
 npm install
 ```
-3. Run the server
-```
-nodemon .
-```
-or
-```
-node .
-```
+3. Run the server by running ```nodemon .``` or ```node .``` in a terminal.
 
 You can now check out if the API works by navigating to http://localhost:YOURPORT/ on your browser.
 
