@@ -25,9 +25,16 @@ router.route('/complete').get(function(req, res, next) {
 
 router.route('/toggle').get(function(req, res, next) {
 	let securityKey = req.query.key;
-	let qNewStatus = req.query.newStatus;
+	let qNewStatus = req.query.newStatus || false;
 	
-	// Todo: Add Query to toggle queueOpen for User
+	db.query("UPDATE `users` SET `queueOpen` = " + qNewStatus + " WHERE `security_key` = '" + securityKey + "'", function(error) {
+		if(error) {
+			next(error);
+		} else {
+			res.status(200);
+			res.send(JSON.stringify("Queue toggled successfully!"));
+		}
+	});
 });
 
 router.route('/pending').get(function(req, res, next) {
