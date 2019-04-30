@@ -28,7 +28,7 @@ npm install
 
 By running ```nodemon .``` or ```node .``` in a terminal.
 
-You can now check out if the API works by navigating to http://localhost:YOURPORT/ on your browser.
+You can now check out if the API works by navigating to <http://localhost:YOURPORT/> on your browser.
 
 ### Deployment
 For deployment, you can use the same step by step tutorial as above. If you want to run in "production mode" which will hide error messages to the users, just change your node environment to production.
@@ -37,11 +37,14 @@ For deployment, you can use the same step by step tutorial as above. If you want
 * **Andreas Heimann** @thatanimeweirdo
 
 ### BuildWith
-* NodeJS
+* NodeJS + NPM
 * MySQL
 * Express
-* Nanoid
-* AsciiTextGenerator
+* nanoid
+* ascii-text-generator
+* bcrypt-nodejs
+* express-rate-limit
+* sw-node-logger
 
 ### License
 This project is licensed under the GPLv3 license. See [LICENSE.md](LICENSE.md) for details.
