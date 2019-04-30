@@ -82,11 +82,11 @@ inquirer.prompt([
                         process.exit();
                     }
 
-                    logger.Log("[SETUP] We're done! You can now run 'nodemon .' or 'node .' to start the server!");
+                    logger.Log("[SETUP] We're done! You can now run 'npm run start' to start the server!");
                     process.exit();
                 });
             } else {
-                logger.Log("[SETUP] We're done! You can now run 'nodemon .' or 'node .' to start the server!");
+                logger.Log("[SETUP] We're done! You can now run 'npm run start' to start the server!");
                 process.exit();
             }
         });

@@ -11,27 +11,27 @@ You need a MySQL Server on Version 10 which has the SQL dump imported. For this 
 
 You will also need NodeJS Version 10 and NPM installed on your local machine. We also recommend installing nodemon globally to easily restart the server on every change.
 
-#### Installing
-A step by step series of examples that tell you how to get a development env running.
+#### Installation
+First, download the latest release and extract the files in a folder. After that, run the following commands to get your server up and running.
 
-**Setup your MySQL credentials**
-
-By editing the config.json file
-
-**Install dependencies**
 ```
 cd makerhub-server
 npm install
 ```
 
+After the installation was successful, the configuration setup should begin automatically. If this is not the case or if you want to run the setup at a later point, just run `npm run setup` and follow the instructions.
+
 **Run the server**
 
-By running ```nodemon .``` or ```node .``` in a terminal.
+Just run `npm run start` in a terminal.
 
-You can now check out if the API works by navigating to <http://localhost:YOURPORT/> on your browser.
+If the server starts successfully, you will be able to check out if the API works by navigating to <http://localhost:YOURPORT/> on your browser. It should return with "OK" and an HTTP status code of 200.
 
 ### Deployment
 For deployment, you can use the same step by step tutorial as above. If you want to run in "production mode" which will hide error messages to the users, just change your node environment to production.
+
+### Documentation
+The documentation of the API is still in development and will be released at a later date.
 
 ### Authors
 * **Andreas Heimann** @thatanimeweirdo
