@@ -6,69 +6,89 @@ const db = require('../db');
 router.route('/login').get(function(req, res, next) {
 	let username = req.query.username;
 	let password = req.query.password;
-	
-	// Check if user exists
-	db.query("SELECT id FROM users WHERE username = '" + username + "' AND password = '" + password + "'", function(error, results) {
-		if(error) {
-			next(error);
-		} else {
-			if(results.length > 0) {
-				let userID = results[0].id;
-				let newKey = nanoid();
-				
-				// Set new SecKey
-				db.query("UPDATE `users` SET `security_key` = '" + newKey + "' WHERE `id` = " + userID);
-				
-				// Return SecKey
-				res.status(200);
-				res.send(JSON.stringify({key: newKey}));
+
+	if(username !== undefined && password !== undefined) {
+		// Check if user exists
+		db.query("SELECT id FROM users WHERE username = '" + username + "' AND password = '" + password + "'", function (error, results) {
+			if (error) {
+				next(error);
 			} else {
-				// No user found
-				res.sendStatus(403);
+				if (results.length > 0) {
+					let userID = results[0].id;
+					let newKey = nanoid();
+
+					// Set new SecKey
+					db.query("UPDATE `users` SET `security_key` = '" + newKey + "' WHERE `id` = " + userID);
+
+					// Return SecKey
+					res.status(200);
+					res.send(JSON.stringify({key: newKey}));
+				} else {
+					// No user found
+					res.sendStatus(403);
+				}
 			}
-		}
-	});
-})
+		});
+	} else {
+		res.status(422);
+		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
+	}
+});
 
 router.route('/logout').get(function(req, res, next) {
 	let securityKey = req.query.key;
-	
-	db.query("UPDATE `users` SET `security_key` = '" + nanoid() + "' WHERE `security_key` = '" + securityKey + "'", function(error) {
-		if(error) {
-			next(error);
-		} else {
-			res.status(200);
-			res.send(JSON.stringify("Logged out successfully!"));
-		}
-	});
+
+	if(securityKey !== undefined) {
+		db.query("UPDATE `users` SET `security_key` = '" + nanoid() + "' WHERE `security_key` = '" + securityKey + "'", function (error) {
+			if (error) {
+				next(error);
+			} else {
+				res.status(200);
+				res.send(JSON.stringify("Logged out successfully!"));
+			}
+		});
+	} else {
+		res.status(422);
+		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
+	}
 });
 
 router.route('/ping').get(function(req, res, next) {
 	let securityKey = req.query.key;
-	
-	db.query("SELECT * FROM users WHERE security_key = '" + securityKey + "'", function(error, results) {
-		if(error) {
-			next(error);
-		} else {
-			if(results.length > 0) {
-				res.sendStatus(200);
+
+	if(securityKey !== undefined) {
+		db.query("SELECT * FROM users WHERE security_key = '" + securityKey + "'", function (error, results) {
+			if (error) {
+				next(error);
 			} else {
-				res.sendStatus(403);
+				if (results.length > 0) {
+					res.sendStatus(200);
+				} else {
+					res.sendStatus(403);
+				}
 			}
-		}
-	});
+		});
+	} else {
+		res.status(422);
+		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
+	}
 });
 
 router.route('/me').get(function(req, res, next) {
 	let securityKey = req.query.key;
-	
-	db.query("SELECT * FROM users WHERE security_key = '" + securityKey + "'", function(error, results) {
-		if(error) {
-			next(error);
-		} else {
-			res.send(JSON.stringify(results));
-		}
-	});
+
+	if(securityKey !== undefined) {
+		db.query("SELECT * FROM users WHERE security_key = '" + securityKey + "'", function (error, results) {
+			if (error) {
+				next(error);
+			} else {
+				res.send(JSON.stringify(results));
+			}
+		});
+	} else {
+		res.status(422);
+		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
+	}
 });
 
 module.exports = router;
