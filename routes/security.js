@@ -22,7 +22,7 @@ router.route('/login').get(loginLimiter, function(req, res, next) {
 
 	if(username !== undefined && password !== undefined) {
 		// Check if user exists
-		db.query("SELECT id,password FROM users WHERE username = '" + username + "'", function (error, results) {
+		db.query("SELECT id,password FROM users WHERE username = ?", [username], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
@@ -33,7 +33,7 @@ router.route('/login').get(loginLimiter, function(req, res, next) {
 						let newKey = nanoid();
 
 						// Set new SecKey
-						db.query("UPDATE `users` SET `security_key` = '" + newKey + "' WHERE `id` = " + userID);
+						db.query("UPDATE `users` SET `security_key` = ? WHERE `id` = ?", [newKey, userID]);
 
 						// Return SecKey
 						res.status(200);
@@ -57,7 +57,7 @@ router.route('/logout').get(function(req, res, next) {
 	let securityKey = req.query.key;
 
 	if(securityKey !== undefined) {
-		db.query("UPDATE `users` SET `security_key` = '" + nanoid() + "' WHERE `security_key` = '" + securityKey + "'", function (error) {
+		db.query("UPDATE `users` SET `security_key` = ? WHERE `security_key` = ?", [nanoid(), securityKey], function (error) {
 			if (error) {
 				next(error);
 			} else {
@@ -75,7 +75,7 @@ router.route('/ping').get(function(req, res, next) {
 	let securityKey = req.query.key;
 
 	if(securityKey !== undefined) {
-		db.query("SELECT * FROM users WHERE security_key = '" + securityKey + "'", function (error, results) {
+		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
@@ -99,7 +99,7 @@ router.route('/register').get(registerLimiter, function(req, res, next) {
 
 	if(qUsername !== undefined && qPassword !== undefined && qEmail !== undefined) {
 		// Check if username or password is already in use
-		db.query("SELECT * FROM `users` WHERE `username` = '" + qUsername + "' OR `email` = '" + qEmail + "'", function (error, results) {
+		db.query("SELECT * FROM `users` WHERE `username` = ? OR `email` = ?", [qUsername, qEmail], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
@@ -114,7 +114,7 @@ router.route('/register').get(registerLimiter, function(req, res, next) {
 					let securityKey = nanoid();
 
 					// Insert new user
-					db.query("INSERT INTO `users` (`id`, `username`, `password`, `email`, `security_key`) VALUES (NULL, '" + qUsername + "', '" + bcrypt.hashSync(qPassword) + "', '" + qEmail + "', '" + securityKey + "');", function(error) {
+					db.query("INSERT INTO `users` (`id`, `username`, `password`, `email`, `security_key`) VALUES (NULL, ?, ?, ?, ?);", [qUsername, bcrypt.hashSync(qPassword), qEmail, securityKey], function(error) {
 						if(error) {
 							next(error);
 						} else {
@@ -135,7 +135,7 @@ router.route('/me').get(function(req, res, next) {
 	let securityKey = req.query.key;
 
 	if(securityKey !== undefined) {
-		db.query("SELECT * FROM users WHERE security_key = '" + securityKey + "'", function (error, results) {
+		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {
 			if (error) {
 				next(error);
 			} else {

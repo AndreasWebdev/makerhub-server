@@ -20,14 +20,14 @@ router.route('/add').get(addLimiter, function(req, res, next) {
 
 	if(qForUser !== undefined && qLevelCode !== undefined && qLevelTitle !== undefined && qLevelCreator !== undefined) {
 		// Check if queue is open
-		db.query("SELECT `queueOpen` FROM `users` WHERE `id` = " + qForUser, function(error, results) {
+		db.query("SELECT `queueOpen` FROM `users` WHERE `id` = ?", [qForUser], function(error, results) {
 			if(error) {
 				next(error);
 			} else {
 				if(results[0].queueOpen === 1) {
 					// Queue is open
 					// Add level to queue
-					db.query("INSERT INTO `levelqueue` (`id`, `foruser`, `levelcode`, `leveltitle`, `levelcreator`, `requestedby`, `comment`, `requestedTime`) VALUES (NULL, '" + qForUser + "', '" + qLevelCode + "', '" + qLevelTitle + "', '" + qLevelCreator + "', '" + qRequestedBy + "', '" + qComment + "', '" + qRequestedTime + "');", function (error, results) {
+					db.query("INSERT INTO `levelqueue` (`id`, `foruser`, `levelcode`, `leveltitle`, `levelcreator`, `requestedby`, `comment`, `requestedTime`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);", [qForUser, qLevelCode, qLevelTitle, qLevelCreator, qRequestedBy, qComment, qRequestedTime], function (error, results) {
 						if (error) {
 							next(error);
 						} else {
@@ -58,7 +58,7 @@ router.route('/complete').get(function(req, res, next) {
 
 	if(securityKey !== undefined && qLevelID !== undefined && qCompletedTime !== undefined && qHighscoreTime !== undefined) {
 		// Get Queue Item
-		db.query("SELECT * FROM `levelqueue` WHERE `id` = " + qLevelID + " AND `forUser` = (SELECT `id` FROM `users` WHERE `security_key` = '" + securityKey + "');", function(error, results) {
+		db.query("SELECT * FROM `levelqueue` WHERE `id` = ? AND `forUser` = (SELECT `id` FROM `users` WHERE `security_key` = ?);", [qLevelID, securityKey], function(error, results) {
 			if(error) {
 				next(error);
 			} else {
@@ -72,11 +72,11 @@ router.route('/complete').get(function(req, res, next) {
 					let qRequestedTime = results[0].requestedTime;
 
 					// Add to History
-					db.query("INSERT INTO `levelhistory` (`id`, `foruser`, `levelcode`, `leveltitle`, `levelcreator`, `requestedby`, `comment`, `requestedTime`, `completedTime`, `highscoreTime`) VALUES (NULL, '" + qForUser + "', '" + qLevelCode + "', '" + qLevelTitle + "', '" + qLevelCreator + "', '" + qRequestedBy + "', '" + qComment + "', " + qRequestedTime + ", " + qCompletedTime + ", " + qHighscoreTime + ");", function(error, results) {
+					db.query("INSERT INTO `levelhistory` (`id`, `foruser`, `levelcode`, `leveltitle`, `levelcreator`, `requestedby`, `comment`, `requestedTime`, `completedTime`, `highscoreTime`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?);", [qForUser, qLevelCode, qLevelTitle, qLevelCreator, qRequestedBy, qComment, qRequestedTime, qCompletedTime, qHighscoreTime], function(error, results) {
                         if(error) {
                             next(error);
                         } else {
-                            db.query("DELETE FROM `levelqueue` WHERE `id` = " + qLevelID, function(error) {
+                            db.query("DELETE FROM `levelqueue` WHERE `id` = ?", [qLevelID], function(error) {
                             	if(error) {
                             		next(error);
 								} else {
@@ -101,7 +101,7 @@ router.route('/toggle').get(function(req, res, next) {
 	let qNewStatus = req.query.newStatus || false;
 
 	if(securityKey !== undefined && qNewStatus !== undefined) {
-		db.query("UPDATE `users` SET `queueOpen` = " + qNewStatus + " WHERE `security_key` = '" + securityKey + "'", function (error) {
+		db.query("UPDATE `users` SET `queueOpen` = ? WHERE `security_key` = ?", [qNewStatus, securityKey], function (error) {
 			if (error) {
 				next(error);
 			} else {
@@ -119,7 +119,7 @@ router.route('/pending').get(function(req, res, next) {
 	let securityKey = req.query.key;
 
 	if(securityKey !== undefined) {
-		db.query("SELECT * FROM levelqueue WHERE foruser = (SELECT id FROM users WHERE security_key = '" + securityKey + "');", function (error, results) {
+		db.query("SELECT * FROM levelqueue WHERE foruser = (SELECT id FROM users WHERE security_key = ?);", [securityKey], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
