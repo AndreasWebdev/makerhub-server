@@ -4,7 +4,9 @@
   "description": "MakerHub Studio Server",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon .",
+    "setup": "node setup.js",
+    "postInstall": "node setup.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,10 @@
     "mongodb": "^3.2.3",
     "mysql": "^2.17.1",
     "nanoid": "^2.0.1",
+    "nodemon": "^1.18.11",
     "sw-node-logger": "^1.0.3"
+  },
+  "devDependencies": {
+    "inquirer": "^6.3.1"
   }
 }

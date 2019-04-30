@@ -1,11 +1,10 @@
 const version = require('./package.json').version;
 const env = process.env.NODE_ENV || 'development';
 
-
 const Logger = require('sw-node-logger');
 let logger = new Logger([
 	new Logger.DRIVERS.CONSOLE(),
-	new Logger.DRIVERS.FILEROLLING({ logDirectory: './logs', fileNamePattern: 'log-' + env + '-<DATE>.log' })
+	new Logger.DRIVERS.FILEROLLING({ logDirectory: './logs', fileNamePattern: 'server-' + env + '-<DATE>.log' })
 ]);
 global.logger = logger;
 

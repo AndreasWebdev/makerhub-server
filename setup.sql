@@ -48,4 +48,3 @@ ALTER TABLE `levelqueue`
 
 ALTER TABLE `users`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
-COMMIT;
