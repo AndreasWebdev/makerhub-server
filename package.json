@@ -1,6 +1,6 @@
 {
   "name": "makerhub-server",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "MakerHub Studio Server",
   "main": "server.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "express": "^4.16.4",
     "mongodb": "^3.2.3",
     "mysql": "^2.17.1",
-    "nanoid": "^2.0.1"
+    "nanoid": "^2.0.1",
+    "sw-node-logger": "^1.0.3"
   }
 }

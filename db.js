@@ -7,7 +7,7 @@ const db = mysql.createConnection({
 	database: config.mysql_db
 });
 
-console.log('[DB] Initializing Database...');
+global.logger.Log('[DB] Initializing Database...');
 db.connect();
 
 module.exports = db;
