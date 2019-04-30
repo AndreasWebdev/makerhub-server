@@ -16,9 +16,9 @@ const registerLimiter = rateLimit({
 	message: "Too many accounts created, please try again in 60 minutes"
 });
 
-router.route('/login').get(loginLimiter, function(req, res, next) {
-	let username = req.query.username;
-	let password = req.query.password;
+router.route('/login').post(loginLimiter, function(req, res, next) {
+	let username = req.body.username;
+	let password = req.body.password;
 
 	if(username !== undefined && password !== undefined) {
 		// Check if user exists
@@ -53,8 +53,8 @@ router.route('/login').get(loginLimiter, function(req, res, next) {
 	}
 });
 
-router.route('/logout').get(function(req, res, next) {
-	let securityKey = req.query.key;
+router.route('/logout').post(function(req, res, next) {
+	let securityKey = req.body.key;
 
 	if(securityKey !== undefined) {
 		db.query("UPDATE `users` SET `security_key` = ? WHERE `security_key` = ?", [nanoid(), securityKey], function (error) {
@@ -71,8 +71,8 @@ router.route('/logout').get(function(req, res, next) {
 	}
 });
 
-router.route('/ping').get(function(req, res, next) {
-	let securityKey = req.query.key;
+router.route('/ping').post(function(req, res, next) {
+	let securityKey = req.body.key;
 
 	if(securityKey !== undefined) {
 		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {
@@ -92,10 +92,10 @@ router.route('/ping').get(function(req, res, next) {
 	}
 });
 
-router.route('/register').get(registerLimiter, function(req, res, next) {
-	let qUsername = req.query.username;
-	let qPassword = req.query.password;
-	let qEmail = req.query.email;
+router.route('/register').post(registerLimiter, function(req, res, next) {
+	let qUsername = req.body.username;
+	let qPassword = req.body.password;
+	let qEmail = req.body.email;
 
 	if(qUsername !== undefined && qPassword !== undefined && qEmail !== undefined) {
 		// Check if username or password is already in use
@@ -131,8 +131,8 @@ router.route('/register').get(registerLimiter, function(req, res, next) {
 	}
 });
 
-router.route('/me').get(function(req, res, next) {
-	let securityKey = req.query.key;
+router.route('/me').post(function(req, res, next) {
+	let securityKey = req.body.key;
 
 	if(securityKey !== undefined) {
 		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {
