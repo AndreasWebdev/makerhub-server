@@ -2,8 +2,14 @@ const express = require('express');
 const nanoid = require('nanoid');
 const router = express.Router();
 const db = require('../db');
+const rateLimit = require("express-rate-limit");
+const addLimiter = rateLimit({
+	windowMs: 5 * 60 * 1000,
+	max: 10,
+	message: "Entry limit reached, please try again in 5 minutes"
+});
 
-router.route('/add').get(function(req, res, next) {
+router.route('/add').get(addLimiter, function(req, res, next) {
 	let qForUser = parseInt(req.query.forUser);
 	let qLevelCode = req.query.levelCode;
 	let qLevelTitle = req.query.levelTitle;

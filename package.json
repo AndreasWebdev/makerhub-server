@@ -20,6 +20,7 @@
     "ascii-text-generator": "^1.0.5",
     "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.4",
+    "express-rate-limit": "^3.5.0",
     "mongodb": "^3.2.3",
     "mysql": "^2.17.1",
     "nanoid": "^2.0.1",
