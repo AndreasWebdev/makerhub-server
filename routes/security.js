@@ -74,6 +74,45 @@ router.route('/ping').get(function(req, res, next) {
 	}
 });
 
+router.route('/register').get(function(req, res, next) {
+	let qUsername = req.query.username;
+	let qPassword = req.query.password;
+	let qEmail = req.query.email;
+
+	if(qUsername !== undefined && qPassword !== undefined && qEmail !== undefined) {
+		// Check if username or password is already in use
+		db.query("SELECT * FROM `users` WHERE `username` = '" + qUsername + "' OR `email` = '" + qEmail + "'", function (error, results) {
+			if (error) {
+				next(error);
+			} else {
+				if(results.length > 0) {
+					// Username or email are in use
+					res.status(409);
+					res.send("Username or email is already used!");
+				} else {
+					// Username and email are unused
+
+					// Generate security key for immediate login
+					let securityKey = nanoid();
+
+					// Insert new user
+					db.query("INSERT INTO `users` (`id`, `username`, `password`, `email`, `security_key`) VALUES (NULL, '" + qUsername + "', '" + qPassword + "', '" + qEmail + "', '" + securityKey + "');", function(error) {
+						if(error) {
+							next(error);
+						} else {
+							res.status(200);
+							res.send(JSON.stringify({key: securityKey}));
+						}
+					});
+				}
+			}
+		});
+	} else {
+		res.status(422);
+		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
+	}
+});
+
 router.route('/me').get(function(req, res, next) {
 	let securityKey = req.query.key;
 
@@ -82,6 +121,9 @@ router.route('/me').get(function(req, res, next) {
 			if (error) {
 				next(error);
 			} else {
+				// undefine password for security reasons
+				results[0].password = undefined;
+
 				res.send(JSON.stringify(results));
 			}
 		});
