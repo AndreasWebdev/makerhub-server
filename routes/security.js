@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt-nodejs');
 const nanoid = require('nanoid');
 const router = express.Router();
 const db = require('../db');
@@ -9,23 +10,28 @@ router.route('/login').get(function(req, res, next) {
 
 	if(username !== undefined && password !== undefined) {
 		// Check if user exists
-		db.query("SELECT id FROM users WHERE username = '" + username + "' AND password = '" + password + "'", function (error, results) {
+		db.query("SELECT id,password FROM users WHERE username = '" + username + "'", function (error, results) {
 			if (error) {
 				next(error);
 			} else {
 				if (results.length > 0) {
-					let userID = results[0].id;
-					let newKey = nanoid();
+					// check password
+					if(bcrypt.compareSync(password, results[0].password)) {
+						let userID = results[0].id;
+						let newKey = nanoid();
 
-					// Set new SecKey
-					db.query("UPDATE `users` SET `security_key` = '" + newKey + "' WHERE `id` = " + userID);
+						// Set new SecKey
+						db.query("UPDATE `users` SET `security_key` = '" + newKey + "' WHERE `id` = " + userID);
 
-					// Return SecKey
-					res.status(200);
-					res.send(JSON.stringify({key: newKey}));
+						// Return SecKey
+						res.status(200);
+						res.send(JSON.stringify({key: newKey}));
+					} else {
+						res.sendStatus(403);
+					}
 				} else {
 					// No user found
-					res.sendStatus(403);
+					res.sendStatus(404);
 				}
 			}
 		});
@@ -96,7 +102,7 @@ router.route('/register').get(function(req, res, next) {
 					let securityKey = nanoid();
 
 					// Insert new user
-					db.query("INSERT INTO `users` (`id`, `username`, `password`, `email`, `security_key`) VALUES (NULL, '" + qUsername + "', '" + qPassword + "', '" + qEmail + "', '" + securityKey + "');", function(error) {
+					db.query("INSERT INTO `users` (`id`, `username`, `password`, `email`, `security_key`) VALUES (NULL, '" + qUsername + "', '" + bcrypt.hashSync(qPassword) + "', '" + qEmail + "', '" + securityKey + "');", function(error) {
 						if(error) {
 							next(error);
 						} else {
