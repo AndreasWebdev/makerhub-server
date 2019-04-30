@@ -37,7 +37,7 @@ For deployment, you can use the same step by step tutorial as above. If you want
 ---
 
 ### Documentation
-#### /security/register
+#### POST /security/register
 Creates a new user.
 
 **Parameters**
@@ -62,7 +62,7 @@ Creates a new user.
 
 5 Requests per 60 minutes
 
-#### /security/login
+#### POST /security/login
 Creates a security key which is used in other api calls for verification.
 
 **Parameters**
@@ -87,7 +87,7 @@ Creates a security key which is used in other api calls for verification.
 
 5 Requests per 15 minutes
 
-#### /security/logout
+#### POST /security/logout
 Invalidates the security key.
 
 **Parameters**
@@ -106,7 +106,7 @@ Invalidates the security key.
 | 422 | Required parameter missing! |
 | 500 | Server error |
 
-#### /security/ping
+#### POST /security/ping
 Used to check if a security key is still valid.
 
 **Parameters**
@@ -124,7 +124,7 @@ Used to check if a security key is still valid.
 | 422 | Required parameter missing! |
 | 500 | Server error |
 
-#### /security/me
+#### POST /security/me
 Get the current user by security key
 
 **Parameters**
@@ -141,7 +141,7 @@ Get the current user by security key
 | 422 | Required parameter missing! |
 | 500 | Server error |
 
-#### /queue/toggle
+#### POST /queue/toggle
 Changes the queueOpen value of a user
 
 **Parameters**
@@ -159,7 +159,7 @@ Changes the queueOpen value of a user
 | 422 | Required parameter missing! |
 | 500 | Server error |
 
-#### /queue/pending
+#### POST /queue/pending
 Get the current queue of a user by security key
 
 **Parameters**
@@ -176,7 +176,7 @@ Get the current queue of a user by security key
 | 422 | Required parameter missing! |
 | 500 | Server error |
 
-#### /queue/complete
+#### POST /queue/complete
 Moves a queue item from a users queue to the users queue history
 
 **Parameters**
@@ -197,7 +197,7 @@ Moves a queue item from a users queue to the users queue history
 | 422 | Required parameter missing! |
 | 500 | Server error |
 
-#### /queue/add
+#### POST /queue/add
 Adds an item to a users queue
 
 **Parameters**
