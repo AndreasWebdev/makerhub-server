@@ -119,7 +119,7 @@ router.route('/pending').post(function(req, res, next) {
 	let securityKey = req.body.key;
 
 	if(securityKey !== undefined) {
-		db.query("SELECT * FROM levelqueue WHERE foruser = (SELECT id FROM users WHERE security_key = ?);", [securityKey], function (error, results) {
+		db.query("SELECT queue.*, history.highscoreTime FROM levelqueue AS queue LEFT JOIN levelhistory as history ON history.levelcode = (SELECT levelcode FROM levelhistory WHERE levelcode = queue.levelcode LIMIT 1) WHERE queue.forUser = (SELECT id FROM users WHERE security_key = ?)", [securityKey], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
