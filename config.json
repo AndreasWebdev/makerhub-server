@@ -1,8 +1,1 @@
-{
-	"version": "1.0.0",
-	"port": 1337,
-	"mysql_host": "localhost",
-	"mysql_user": "websmart",
-	"mysql_pass": "websmart",
-	"mysql_db": "makerhub"
-}
+{"port":1337,"mysql_host":"localhost","mysql_user":"makerhub_dev","mysql_pass":"makerhub_dev","mysql_db":"makerhub","version":"1.0.0"}
