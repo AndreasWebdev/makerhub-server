@@ -57,12 +57,24 @@ router.route('/logout').post(function(req, res, next) {
 	let securityKey = req.body.key;
 
 	if(securityKey !== undefined) {
-		db.query("UPDATE `users` SET `security_key` = ? WHERE `security_key` = ?", [nanoid(), securityKey], function (error) {
+		// Check if Security Key is valid
+		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
-				res.status(200);
-				res.send(JSON.stringify("Logged out successfully!"));
+				if (results.length > 0) {
+					// Renew Security Key and tell nobody!
+					db.query("UPDATE `users` SET `security_key` = ? WHERE `security_key` = ?", [nanoid(), securityKey], function (error) {
+						if (error) {
+							next(error);
+						} else {
+							res.status(200);
+							res.send(JSON.stringify("Logged out successfully!"));
+						}
+					});
+				} else {
+					res.sendStatus(403);
+				}
 			}
 		});
 	} else {
@@ -139,10 +151,14 @@ router.route('/me').post(function(req, res, next) {
 			if (error) {
 				next(error);
 			} else {
-				// undefine password for security reasons
-				results[0].password = undefined;
+				if(results[0]) {
+					// undefine password for security reasons
+					results[0].password = undefined;
 
-				res.send(JSON.stringify(results));
+					res.send(JSON.stringify(results));
+				} else {
+					res.sendStatus(404);
+				}
 			}
 		});
 	} else {
