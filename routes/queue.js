@@ -53,7 +53,7 @@ router.route('/add').post(addLimiter, function(req, res, next) {
 router.route('/complete').post(function(req, res, next) {
 	let securityKey = req.body.key;
 	let qLevelID = parseInt(req.body.levelID);
-	let qCompletedTime = ((req.body.completedTime || false) ? new Date().valueOf()/1000 : false);
+	let qCompletedTime = ((req.body.completedTime !== false) ? new Date().valueOf()/1000 : false);
 	let qHighscoreTime = parseInt(req.body.highscoreTime);
 
 	if(securityKey !== undefined && qLevelID !== undefined && qCompletedTime !== undefined && qHighscoreTime !== undefined) {
@@ -119,7 +119,7 @@ router.route('/pending').post(function(req, res, next) {
 	let securityKey = req.body.key;
 
 	if(securityKey !== undefined) {
-		db.query("SELECT queue.*, history.highscoreTime FROM levelqueue AS queue LEFT JOIN levelhistory as history ON history.levelcode = (SELECT levelcode FROM levelhistory WHERE levelcode = queue.levelcode LIMIT 1) WHERE queue.forUser = (SELECT id FROM users WHERE security_key = ?)", [securityKey], function (error, results) {
+		db.query("SELECT queue.*, history.highscoreTime, history.completedTime FROM levelqueue AS queue LEFT JOIN levelhistory as history ON history.id = (SELECT history2.id FROM levelhistory AS history2 WHERE history2.levelcode = queue.levelcode AND history2.completedTime > 0 AND history2.highscoreTime > 0 ORDER BY history2.highscoreTime ASC LIMIT 1) WHERE queue.forUser = (SELECT id FROM users WHERE security_key = ?) GROUP BY queue.id", [securityKey], function (error, results) {
 			if (error) {
 				next(error);
 			} else {
