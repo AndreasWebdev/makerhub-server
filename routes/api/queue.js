@@ -1,7 +1,7 @@
 const express = require('express');
 const nanoid = require('nanoid');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 const rateLimit = require("express-rate-limit");
 const addLimiter = rateLimit({
 	windowMs: 5 * 60 * 1000,

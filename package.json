@@ -28,7 +28,8 @@
     "mysql": "^2.17.1",
     "nanoid": "^2.0.1",
     "nodemon": "^1.18.11",
-    "sw-node-logger": "^1.0.3"
+    "sw-node-logger": "^1.0.3",
+    "twig": "^1.13.3"
   },
   "devDependencies": {
     "inquirer": "^6.3.1"

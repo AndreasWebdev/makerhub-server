@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
 const nanoid = require('nanoid');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 const rateLimit = require("express-rate-limit");
 const loginLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000,

@@ -31,6 +31,13 @@ if(config.version === undefined) {
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const twig = require("twig");
+
+app.set( 'view engine', 'twig' );
+app.set("twig options", {
+    allow_async: true,
+    strict_variables: false
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -39,6 +46,9 @@ app.use(bodyParser.json());
 const db = require('./db');
 
 // Setup Routes
+logger.Log("[ROUTES] Loading Static File Routes...");
+app.use('/static/', express.static(__dirname + '/src/static'));
+
 logger.Log("[ROUTES] Loading Public Routes...");
 app.use('/', require('./routes/public/general'));
 app.use('/u/', require('./routes/public/profile'));

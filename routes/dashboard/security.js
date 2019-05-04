@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
 const nanoid = require('nanoid');
 const router = express.Router();
-const db = require('../db');
+const db = require('../../db');
 const rateLimit = require("express-rate-limit");
 const loginLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000,
@@ -17,21 +18,28 @@ const registerLimiter = rateLimit({
 });
 
 router.route('/login').get(function(req, res, next) {
-	res.sendStatus(200);
+	res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
 });
 router.route('/login').post(function(req, res, next) {
-	res.sendStatus(200);
+	// Try to login
+	
+	res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
 });
 
 router.route('/register').get(function(req, res, next) {
-	res.sendStatus(200);
+	res.render(path.join(__dirname, '../../src/views/dashboard/register.twig'));
 });
 router.route('/register').post(function(req, res, next) {
-	res.sendStatus(200);
+	// Try to Register
+	
+	res.render(path.join(__dirname, '../../src/views/dashboard/register.twig'));
 });
 
 router.route('/logout').get(function(req, res, next) {
-	res.sendStatus(200);
+	// Logout
+	
+	// Redirect to Index
+	res.redirect('./');
 });
 
 module.exports = router;

@@ -1,27 +1,20 @@
-<!--
-
-    !!!111 OMG u r such n hax0r!!!!11!!1
-    > write us at hey@makerhub.studio if you want to help us develop something great!
-    > or don't, we don't judge!
-
--->
 <!DOCTYPE html>
     <html>
         <head>
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <title>MakerHub Studio ~ Super Mario Maker 2 Streaming Queue System</title>
-            <link rel="shortcut icon" href="assets/img/favicon.png" />
+            <link rel="shortcut icon" href="/static/img/favicon.png" />
 
             <!-- Meta Tags -->
             <meta name="description" content="MakerHub Studio - the first easy-to-use queue system for your Super Mario Maker 2™ livestreams and videos!" />
 			<meta name="google-site-verification" content="yrCHk_FOzG4wL76xCUBXukHxVxEsQt06VGmJr4pByX4" />
 
             <!-- Stylesheets -->
-            <link rel="stylesheet" href="assets/css/reset.css" />
+            <link rel="stylesheet" href="/static/css/reset.css" />
             <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,600" />
-            <link rel="stylesheet" href="assets/css/comingsoon.css" />
+            <link rel="stylesheet" href="/static/css/public.css" />
 
             <!-- Google AdSense -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -35,16 +28,17 @@
         <body class="loading">
             <header>
                 <nav class="grid-wrapper grid-nav">
-                    <div class="brand"></div>
+                    <a href="/"><div class="brand"></div></a>
 
                     <div class="items">
                         <a href="https://discord.gg/dUkqYVM" target="_blank" class="item"><i class="mdi mdi-discord"></i></a>
                         <a href="https://twitter.com/makerhub_studio" target="_blank" class="item"><i class="mdi mdi-twitter"></i></a>
                         <a href="https://www.youtube.com/channel/UC_pOzAJ9p5IyNnApUNDln5g/" target="_blank" class="item"><i class="mdi mdi-youtube"></i></a>
 
-                        <!-- <div class="divider"></div>
+                        <div class="divider"></div>
 
-                        <a href="javascript:void(0)" class="button button-disabled">Login</a> -->
+                        <a href="/dashboard/login" class="button">Login</a>
+                        <a href="/dashboard/register" class="button">Register</a>
                     </div>
                 </nav>
 
@@ -52,10 +46,6 @@
                     <div class="copy">
                         <h1 class="typo-header">Super Mario Maker 2™ level queue for your livestream or video!</h1>
                         <p class="typo-default">MakerHub Studio is the first easy-to-use queue system for your Super Mario Maker 2™ livestreams and videos! Let your fans recommend levels for you to play and track your personal highscores across streaming sessions!</p>
-                        <div class="release">
-                            <span>Coming to your content creator on June 28th.</span>
-                            <a href="javascript:void(0)" onclick="smoothScrollTo('#closed-beta')" class="button">Request Beta access now!</a>
-                        </div>
                     </div>
                     <div class="video">
                         <a href="https://youtu.be/lZfackQzmN4" target="_blank" class="thumbnail">
@@ -65,9 +55,6 @@
                             </div>
                         </a>
                     </div>
-                    <!-- <div class="screenshot">
-                        <div class="ui-screenshot"></div>
-                    </div> -->
                 </section>
             </header>
 
@@ -75,7 +62,7 @@
                 <section class="section-features grid-wrapper grid-features">
                     <div class="feature">
                         <div class="illustration">
-                            <img src="assets/img/illustrationQueue.svg" alt="YourQueue" />
+                            <img src="/static/img/illustrationQueue.svg" alt="YourQueue" />
                         </div>
                         <div class="copy">
                             <h1 class="typo-header">Your<br />Queue</h1>
@@ -84,7 +71,7 @@
                     </div>
                     <div class="feature">
                         <div class="illustration">
-                            <img src="assets/img/illustrationTimer.svg" alt="YourTimer" />
+                            <img src="/static/img/illustrationTimer.svg" alt="YourTimer" />
                         </div>
                         <div class="copy">
                             <h1 class="typo-header">Your<br />Timer</h1>
@@ -93,7 +80,7 @@
                     </div>
                     <div class="feature">
                         <div class="illustration">
-                            <img src="assets/img/illustrationOverlay.svg" alt="YourOverlay" />
+                            <img src="/static/img/illustrationOverlay.svg" alt="YourOverlay" />
                         </div>
                         <div class="copy">
                             <h1 class="typo-header">Your<br />Overlay</h1>
@@ -102,7 +89,7 @@
                     </div>
                     <div class="feature">
                         <div class="illustration">
-                            <img src="assets/img/illustrationPage.svg" alt="YourPage" />
+                            <img src="/static/img/illustrationPage.svg" alt="YourPage" />
                         </div>
                         <div class="copy">
                             <h1 class="typo-header">Your<br />Page</h1>
@@ -119,25 +106,12 @@
                     <div class="pricing">
                         <h1 class="typo-header"><div class="logoHat"></div> Free</h1>
                         <p class="typo-default">MakerHub Studio Free contains all basic functionality to get your stream up and running! There are no queue limitations and you can customize your page through the dashboard. To cover the costs of our servers, we might display ads on the dashboard or your page, but let's be honest, you probably are using an Adblocker anyways.</p>
-                        <div class="release">Coming June 28th!</div>
+                        <div class="release"><a href="./dashboard/register" class="button">Register now!</a></div>
                     </div>
                     <div class="pricing">
                         <h1 class="typo-header"><div class="logoHat"></div> VIP</h1>
                         <p class="typo-default">MakerHub Studio VIP is for those, who want to take their stream to the next level! You will not only support the development of this project but gain access to our powerful customization tools to use custom CSS and HTML on your page and stream overlay! You will also gain access to our VIP support on Discord and have a direct feedback channel to our developers.</p>
-                        <div class="release">Coming Soon!</div>
-                    </div>
-                </section>
-
-                <section class="section-closedbeta grid-wrapper grid-closedbeta">
-                    <div class="copy">
-                        <a name="closed-beta" id="closed-beta"></a>
-
-                        <h1 class="typo-header">Closed Beta</h1>
-                        <p class="typo-default">Are you a content creator that cannot wait to try out MakerHub Studio? Contact us, tell us about your channel and your audience and get access to the closed beta to make MakerHub Studio perfect when we will launch it on June 28th!</p>
-                        <a href="mailto:hey@makerhub.studio" class="button">Contact us!</a>
-                    </div>
-                    <div class="illustration">
-                        <img src="assets/img/illustrationClosedBeta.svg" alt="Closed Beta" />
+                        <div class="release">$4.99 / month</div>
                     </div>
                 </section>
 
@@ -153,12 +127,12 @@
                 <div class="items">
                     <small>&copy; 2019 - hey@makerhub.studio</small><br />
                     <small style="opacity: 0.5"><small>This is a fan-project and in no way affiliated with or endorsed by Nintendo.<br />Nintendo, Super Mario Maker 2 and any ingame screenshots are property of Nintendo.</small></small>
-                    <!-- <a href="/legal">Legal information</a>
-                    <a href="/privacy">Privacy policy & GDPR</a> -->
+                    <a href="/legal">Legal information</a>
+                    <a href="/privacy">Privacy policy & GDPR</a>
                 </div>
             </footer>
 
-            <script src="assets/js/comingsoon.js"></script>
+            <script src="/static/js/public.js"></script>
 
             <!-- Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139388827-1"></script>
