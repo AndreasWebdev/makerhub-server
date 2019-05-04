@@ -39,14 +39,22 @@ app.use(bodyParser.json());
 const db = require('./db');
 
 // Setup Routes
-logger.Log("[ROUTES] Loading Routes...");
+logger.Log("[ROUTES] Loading Public Routes...");
+app.use('/', require('./routes/public/general'));
+app.use('/u/', require('./routes/public/profile'));
 
-app.get('/', (req, res) => {
+logger.Log("[ROUTES] Loading API Routes...");
+
+app.get('/api/', (req, res) => {
 	return res.sendStatus(200);
 });
 
-app.use('/security', require('./routes/security'));
-app.use('/queue', require('./routes/queue'));
+app.use('/api/security', require('./routes/api/security'));
+app.use('/api/queue', require('./routes/api/queue'));
+
+logger.Log("[ROUTES] Loading Dashboard Routes...");
+app.use('/dashboard', require('./routes/dashboard/dashboard'));
+app.use('/dashboard', require('./routes/dashboard/security'));
 
 // Error Handling
 app.use(function(err, req, res, next) {
