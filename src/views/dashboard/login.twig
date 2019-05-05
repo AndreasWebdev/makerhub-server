@@ -14,7 +14,7 @@
             <link rel="stylesheet" href="/static/css/reset.css" />
             <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,600" />
-            <link rel="stylesheet" href="/static/css/dashboard.css" />
+            <link rel="stylesheet" href="/static/css/security.css" />
 
             <!-- Google AdSense -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -26,41 +26,32 @@
             </script>
         </head>
         <body class="loading">
-            <header>
-                <nav class="grid-wrapper grid-nav">
-                    <a href="/"><div class="brand"></div></a>
-
-                    <div class="items">
-                        <a href="/" class="button">Back</a>
+            <main class="loading">
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+            </main>
+            <main class="login active">
+                <div class="logo"></div>
+                {% if vars['error'] is defined %}
+                    <div class="notification active">{{ vars['error'] }}</div>
+                {% else %}
+                    <div class="notification"></div>
+                {% endif %}
+                <form action="" method="POST" class="login-form">
+                    <input type="text" name="login_username" placeholder="Username" />
+                    <input type="password" name="login_password" placeholder="Password" />
+                    <div class="actions">
+                        <button class="login">Login</button>
+                        <a href="/dashboard/register">Create an account</a>
                     </div>
-                </nav>
-            </header>
-
-            <main>
-				Login
+                </form>
             </main>
 
             <footer>
-                <div class="brand"></div>
-
-                <div class="items">
-                    <small>&copy; 2019 - hey@makerhub.studio</small><br />
-                    <small style="opacity: 0.5"><small>This is a fan-project and in no way affiliated with or endorsed by Nintendo.<br />Nintendo, Super Mario Maker 2 and any ingame screenshots are property of Nintendo.</small></small>
-                    <a href="/legal">Legal information</a>
-                    <a href="/privacy">Privacy policy & GDPR</a>
-                </div>
+                &copy; 2019 - makerhub.studio
             </footer>
 
-            <script src="/static/js/security.js"></script>
-
-            <!-- Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139388827-1"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-139388827-1');
-            </script>
+            <script src="/static/js/pageLoader.js"></script>
         </body>
     </html>
