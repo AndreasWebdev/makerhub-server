@@ -7,12 +7,10 @@ router.route('/').get(function(req, res, next) {
 });
 
 router.route('/:username').get(function(req, res, next) {
-	res.status(200);
-	res.send("Profile of " + req.param(username));
+	res.send("Profile of " + req.params.username);
 });
 
 router.route('/:username/submit').get(function(req, res, next) {
-	res.status(200);
 	res.send("Submit new level for " + req.param(username));
 });
 
