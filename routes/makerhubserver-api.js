@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios/index');
 const apiBase = "http://localhost:1337/api/";
 
 async function ping(securityKey) {
