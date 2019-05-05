@@ -40,27 +40,6 @@
 				Register
             </main>
 
-            <footer>
-                <div class="brand"></div>
-
-                <div class="items">
-                    <small>&copy; 2019 - hey@makerhub.studio</small><br />
-                    <small style="opacity: 0.5"><small>This is a fan-project and in no way affiliated with or endorsed by Nintendo.<br />Nintendo, Super Mario Maker 2 and any ingame screenshots are property of Nintendo.</small></small>
-                    <a href="/legal">Legal information</a>
-                    <a href="/privacy">Privacy policy & GDPR</a>
-                </div>
-            </footer>
-
-            <script src="/static/js/security.js"></script>
-
-            <!-- Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139388827-1"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-139388827-1');
-            </script>
+            {% include '../public/fragments/footer.twig' %}
         </body>
     </html>

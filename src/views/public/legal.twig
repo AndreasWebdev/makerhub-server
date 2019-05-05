@@ -1,29 +1,7 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <title>MakerHub Studio ~ Super Mario Maker 2 Streaming Queue System</title>
-            <link rel="shortcut icon" href="/static/img/favicon.png" />
-
-            <!-- Meta Tags -->
-            <meta name="description" content="MakerHub Studio - the first easy-to-use queue system for your Super Mario Maker 2™ livestreams and videos!" />
-			<meta name="google-site-verification" content="yrCHk_FOzG4wL76xCUBXukHxVxEsQt06VGmJr4pByX4" />
-
-            <!-- Stylesheets -->
-            <link rel="stylesheet" href="/static/css/reset.css" />
-            <link rel="stylesheet" href="https://cdn.materialdesignicons.com/3.6.95/css/materialdesignicons.min.css" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans:400,600" />
-            <link rel="stylesheet" href="/static/css/public.css" />
-
-            <!-- Google AdSense -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({
-                    google_ad_client: "ca-pub-3598028193207045",
-                    enable_page_level_ads: true
-                });
-            </script>
+            {% include './fragments/header.twig' %}
         </head>
         <body class="loading">
             <header>
@@ -39,33 +17,31 @@
             </header>
 
             <main>
-                <section class="section-statictext grid-wrapper grid-beyond">
-                    <h1 class="typo-header">Legal information</h1>
-                    <p class="typo-default">Legal Text Here</p>
+                <section class="section-legal grid-wrapper">
+                    <h1 class="typo-header">Legal Disclosure</h1>
+                    <p class="typo-default">
+                        Information in accordance with Section 5 TMG<br />
+                        Andreas Heimann Web & Dev<br />
+                        Kranichstraße 22<br />
+                        46282 Dorsten</p>
+                    <p class="typo-default">
+                        Telephone: 0152 27554564<br>
+                        E-Mail: <a href="mailto:hey@makerhub.studio">hey@makerhub.studio</a>
+                    </p>
+                    <p class="typo-default">
+                        <strong>Disclaimer</strong><br />
+                        Accountability for content<br />
+                        The contents of our pages have been created with the utmost care. However, we cannot guarantee the contents' accuracy, completeness or topicality. According to statutory provisions, we are furthermore responsible for our own content on these web pages. In this matter, please note that we are not obliged to monitor the transmitted or saved information of third parties, or investigate circumstances pointing to illegal activity. Our obligations to remove or block the use of information under generally applicable laws remain unaffected by this as per §§ 8 to 10 of the Telemedia Act (TMG).<br><br>
+
+                        Accountability for links<br />
+                        Responsibility for the content of external links (to web pages of third parties) lies solely with the operators of the linked pages. No violations were evident to us at the time of linking. Should any legal infringement become known to us, we will remove the respective link immediately.<br><br>Copyright<br> Our web pages and their contents are subject to German copyright law. Unless expressly permitted by law, every form of utilizing, reproducing or processing works subject to copyright protection on our web pages requires the prior consent of the respective owner of the rights. Individual reproductions of a work are only allowed for private use. The materials from these pages are copyrighted and any unauthorized use may violate copyright laws.
+                    </p>
+                    <p class="typo-default">
+                        <a href="http://www.translate-24h.de" target="_blank">translate-24h.de English Translations</a>
+                    </p>
                 </section>
             </main>
 
-            <footer>
-                <div class="brand"></div>
-
-                <div class="items">
-                    <small>&copy; 2019 - hey@makerhub.studio</small><br />
-                    <small style="opacity: 0.5"><small>This is a fan-project and in no way affiliated with or endorsed by Nintendo.<br />Nintendo, Super Mario Maker 2 and any ingame screenshots are property of Nintendo.</small></small>
-                    <a href="/legal">Legal information</a>
-                    <a href="/privacy">Privacy policy & GDPR</a>
-                </div>
-            </footer>
-
-            <script src="/static/js/public.js"></script>
-
-            <!-- Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139388827-1"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'UA-139388827-1');
-            </script>
+            {% include './fragments/footer.twig' %}
         </body>
     </html>
