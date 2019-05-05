@@ -1,45 +1,67 @@
 const path = require('path');
 const express = require('express');
-const bcrypt = require('bcrypt-nodejs');
-const nanoid = require('nanoid');
 const router = express.Router();
-const db = require('../../db');
-const rateLimit = require("express-rate-limit");
-const loginLimiter = rateLimit({
-	windowMs: 15 * 60 * 1000,
-	max: 5,
-	skipSuccessfulRequests: true,
-	message: "Too many failed login attempts, please try again in 15 minutes"
-});
-const registerLimiter = rateLimit({
-	windowMs: 60 * 60 * 1000,
-	max: 5,
-	message: "Too many accounts created, please try again in 60 minutes"
-});
+const mhsApi = require('../makerhubserver-api.js');
 
 router.route('/login').get(function(req, res, next) {
-	res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
-});
-router.route('/login').post(function(req, res, next) {
-	// Try to login
-	
-	res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
+	let sessionKey = req.session.key;
+
+	if(sessionKey) {
+		mhsApi.ping(sessionKey).then(apiRes => {
+			if(apiRes) {
+				res.redirect('/dashboard');
+			} else {
+				res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
+			}
+		});
+	} else {
+		res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
+	}
+}).post(function(req, res, next) {
+	let vars = [];
+
+	let username = req.fields.login_username;
+	let password = req.fields.login_password;
+
+	mhsApi.login(username, password).then(apiRes => {
+		if(apiRes.status === 200) {
+			// Set Session
+			req.session.key = apiRes.data.key;
+
+			// Redirect
+			res.redirect('/dashboard');
+		} else if(apiRes.status === 403 || apiRes.status === 404) {
+			vars["error"] = "The username and password you entered did not match our records. Please double-check and try again";
+			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+		} else if(apiRes.status === 429) {
+			vars["error"] = "Too many failed login attempts! Please try again in 5 minutes!";
+			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+		} else {
+			vars["error"] = "Unknown Server Error. Please try again later!";
+			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+		}
+	});
 });
 
 router.route('/register').get(function(req, res, next) {
 	res.render(path.join(__dirname, '../../src/views/dashboard/register.twig'));
 });
-router.route('/register').post(function(req, res, next) {
-	// Try to Register
-	
-	res.render(path.join(__dirname, '../../src/views/dashboard/register.twig'));
-});
 
 router.route('/logout').get(function(req, res, next) {
-	// Logout
-	
-	// Redirect to Index
-	res.redirect('./');
+	let sessionKey = req.session.key;
+
+	if(sessionKey) {
+		// Logout from API
+		mhsApi.logout(req.session.key).then(apiRes => {
+			// Remove Session
+			req.session.key = "";
+
+			// Redirect to Login
+			res.redirect('/dashboard/login');
+		});
+	} else {
+		res.redirect('/dashboard/login');
+	}
 });
 
 module.exports = router;
