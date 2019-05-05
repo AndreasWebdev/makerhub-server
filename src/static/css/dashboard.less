@@ -91,341 +91,41 @@ header {
       }
     }
   }
-
-  & .section-jumbotron {
-    padding-top: 100px;
-
-    & .copy {
-      padding-top: 100px;
-      grid-area: copy;
-      padding-bottom: 50px;
-
-      & h1 {
-        margin-bottom: 20px;
-      }
-      & p {
-        margin-bottom: 20px;
-      }
-      & .release {
-        background: var(--colorBackgroundDark);
-        max-width: 400px;
-        color: #fff;
-        padding: 20px;
-        border-radius: 4px;
-        display: grid;
-        grid-gap: 15px;
-
-        & .button {
-          text-align: center;
-          font-weight: bold;
-        }
-      }
-    }
-    & .video {
-      grid-area: media;
-      padding-top: 100px;
-
-      & .thumbnail {
-        display: block;
-        width: 100%;
-        padding-top: 55.66%;
-        background-image: url('../img/trailer_thumbnail.jpg');
-        background-size: cover;
-        border-radius: 4px;
-        position: relative;
-        overflow: hidden;
-
-        & .text {
-          opacity: 0;
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          right: 0;
-          left: 0;
-          background: rgba(0,0,0,0.6);
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-          align-items: center;
-          justify-content: center;
-          transition: 0.2s ease opacity;
-
-          & .mdi {
-            font-size: 48px;
-            color: #fff;
-            margin-bottom: 5px;
-          }
-          & span {
-            font-weight: 600;
-            color: #fff;
-          }
-        }
-
-        &:hover .text {
-          opacity: 1;
-          cursor: pointer;
-        }
-      }
-    }
-    & .screenshot {
-      grid-area: media;
-      background: url("../img/uiScreenshot.png") center top no-repeat;
-      background-size: cover;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      box-shadow: 0px 0px 20px rgba(0,0,0,0.6);
-    }
-  }
 }
 
 main {
   padding: 100px 0;
   display: grid;
   grid-gap: 50px;
-
-  & .section-features {
-    & .feature {
-      background: var(--colorBackgroundSecondary);
-      border-radius: 4px;
-      transition: 0.2s ease transform, 0.2s ease box-shadow;
-
-      & .illustration {
-        overflow: hidden;
-        height: 250px;
-        background: rgba(255,255,255,0.15);
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-
-        & img {
-          max-height: 90%;
-          width: 90%;
-        }
-      }
-
-      & .copy {
-        padding: 30px;
-
-        & h1 {
-          margin-bottom: 20px;
-        }
-      }
-
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-      }
-    }
-  }
-  & .section-pricing {
-    & .pricing {
-      background: var(--colorBackgroundSecondary);
-      border-radius: 4px;
-      padding: 30px;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      grid-gap: 15px;
-      transition: 0.2s ease transform, 0.2s ease box-shadow;
-
-      & h1 {
-        & .logoHat {
-          width: 34px;
-          height: 22px;
-          background: var(--logoHat) center no-repeat;
-          background-size: contain;
-          align-self: center;
-          margin-right: 10px;
-          display: inline-block;
-        }
-      }
-      & .release {
-        background: var(--colorBackgroundDark);
-        color: #fff;
-        padding: 20px;
-        border-radius: 4px;
-        display: grid;
-        text-align: center;
-        grid-gap: 15px;
-      }
-
-      &:not(:first-of-type):hover {
-        transform: scale(1.05);
-        box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-      }
-
-      &:nth-child(1) {
-        grid-area: pricing;
-      }
-      &:nth-child(2) {
-        grid-area: free;
-      }
-      &:nth-child(3) {
-        grid-area: vip;
-      }
-    }
-  }
-  & .section-closedbeta {
-    background: var(--colorBackgroundDark);
-    border-radius: 4px;
-
-    & .copy {
-      display: grid;
-      padding: 30px;
-      grid-gap: 15px;
-
-      & .button {
-        width: 100%;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-        padding: 15px;
-      }
-    }
-    & .illustration {
-      position: relative;
-      overflow: hidden;
-
-      & img {
-        position: absolute;
-        bottom: 0px;
-        right: 25px;
-        max-height: 90%;
-        max-width: 90%;
-      }
-    }
-  }
-  & .section-beyond {
-    background: var(--colorBackgroundDark);
-    border-radius: 4px;
-    display: grid;
-    padding: 30px;
-    grid-gap: 15px;
-    text-align: center;
-  }
 }
-
-footer {
-  padding-bottom: 50px;
-
-  & .brand {
-    margin: auto;
-    width: 35px;
-    height: 22px;
-    background: var(--logoHat) center no-repeat;
-    background-size: contain;
-  }
-  & .items {
-    text-align: center;
-    margin: 15px auto auto;
-
-    & a {
-      font-size: 12px;
-      color: inherit;
-      display: block;
-      text-decoration: none;
-      margin-bottom: 5px;
-      transition: 0.2s ease opacity;
-      opacity: 0.6;
-
-      &:hover {
-        opacity: 0.3;
-      }
-    }
-  }
-}
-
 .grid-wrapper {
   width: 90%;
   max-width: 1140px;
   display: grid;
   margin: 0 auto;
 
-  &.grid-jumbotron {
-    grid-template-columns: 2fr 1fr;
-    grid-template-areas: "copy media";
-    grid-gap: 25px;
-  }
   &.grid-nav{
     grid-template-columns: 1fr auto;
     grid-gap: 25px;
     align-items: center;
-  }
-  &.grid-features {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 25px;
-  }
-  &.grid-pricing {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "pricing free vip";
-    grid-gap: 25px;
-  }
-  &.grid-closedbeta {
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 25px;
   }
 }
 
 // Tablet
 @media screen and (max-width: 1200px) {
   header {
-    & .section-jumbotron {
-      padding-top: 100px;
-    }
   }
   .grid-wrapper {
-    &.grid-pricing {
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas: "pricing pricing" "free vip";
-      grid-gap: 25px;
-    }
-    &.grid-closedbeta {
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 25px;
-    }
   }
 }
 
 // Mobile
 @media screen and (max-width: 1000px) {
   header {
-    & .section-jumbotron {
-      padding-top: 25px;
-
-      & .copy {
-        padding-top: 25px;
-        padding-bottom: 25px;
-      }
-      & .screenshot {
-        height: 300px;
-        background-size: contain;
-        box-shadow: none;
-      }
-      & .video {
-        padding-top: 0px;
-      }
-    }
   }
   main {
     padding: 50px 0px;
   }
   .grid-wrapper {
-    &.grid-jumbotron {
-      grid-template-columns: 1fr;
-      grid-template-areas: "media" "copy";
-      grid-gap: 25px;
-    }
-    &.grid-features {
-      grid-template-columns: 1fr;
-      grid-gap: 25px;
-    }
-    &.grid-pricing {
-      grid-template-columns: 1fr;
-      grid-template-areas: "pricing" "free" "vip";
-      grid-gap: 25px;
-    }
-    &.grid-closedbeta {
-      grid-template-columns: 1fr;
-      grid-gap: 25px;
-    }
   }
 }

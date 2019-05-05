@@ -137,6 +137,41 @@ button.button-disabled,
     right: 0%;
   }
 }
+footer {
+  padding-bottom: 50px;
+}
+footer .brand {
+  margin: auto;
+  width: 35px;
+  height: 22px;
+  background: var(--logoHat) center no-repeat;
+  background-size: contain;
+}
+footer .items {
+  text-align: center;
+  margin: 15px auto auto;
+}
+footer .items .copyright {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+footer .items .disclaimer {
+  font-size: 0.65em;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+footer .items a {
+  font-size: 12px;
+  color: inherit;
+  display: block;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: 0.2s ease opacity;
+  opacity: 0.6;
+}
+footer .items a:hover {
+  opacity: 0.3;
+}
 html {
   box-sizing: border-box;
 }
@@ -405,31 +440,25 @@ main .section-beyond {
   grid-gap: 15px;
   text-align: center;
 }
-footer {
-  padding-bottom: 50px;
+main .section-legal h1 {
+  margin-bottom: 20px;
 }
-footer .brand {
-  margin: auto;
-  width: 35px;
-  height: 22px;
-  background: var(--logoHat) center no-repeat;
-  background-size: contain;
+main .section-legal p {
+  margin-bottom: 20px;
 }
-footer .items {
-  text-align: center;
-  margin: 15px auto auto;
+main .section-legal ol,
+main .section-legal ul {
+  padding: 0px 30px;
 }
-footer .items a {
-  font-size: 12px;
-  color: inherit;
-  display: block;
+main .section-legal ol li,
+main .section-legal ul li {
+  margin-bottom: 15px;
+}
+main .section-legal a {
+  color: var(--colorPrimary);
+}
+main .section-legal a:hover {
   text-decoration: none;
-  margin-bottom: 5px;
-  transition: 0.2s ease opacity;
-  opacity: 0.6;
-}
-footer .items a:hover {
-  opacity: 0.3;
 }
 .grid-wrapper {
   width: 90%;
@@ -512,4 +541,4 @@ footer .items a:hover {
     grid-gap: 25px;
   }
 }
-/*# sourceMappingURL=comingsoon.css.map */
+/*# sourceMappingURL=public.css.map */

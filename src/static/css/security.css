@@ -172,22 +172,23 @@ footer .items a {
 footer .items a:hover {
   opacity: 0.3;
 }
-html {
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 body {
   background: var(--colorBackground);
   font-family: "Noto Sans", sans-serif;
   font-size: 16px;
-  line-height: 1.25;
-  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  color: var(--colorPrimaryText);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease all;
   transform: translate(0px, 0px);
-  transition: 0.2s ease opacity, 0.2s ease transform;
 }
 body.loading {
   opacity: 0;
@@ -196,85 +197,70 @@ body.loading {
 body.loading * {
   transition: none !important;
 }
-.typo-header {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  line-height: 1.2;
-  padding: 0;
-  margin: 0;
-  color: #ffffff;
+main {
+  display: none;
+  width: 250px;
+  grid-gap: 15px;
+  position: relative;
+  transition: 0.4s ease opacity;
+  opacity: 0;
 }
-.typo-default {
-  font-family: "Noto Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.6);
-}
-header {
-  background: url('../img/jumbotronBG.png') center no-repeat;
-  background-size: cover;
-  overflow: hidden;
-}
-header nav {
-  padding: 25px 0;
-}
-header nav .brand {
-  width: 220px;
-  height: 22px;
-  background: var(--logoLong) center no-repeat;
-  background-size: contain;
-}
-header nav .items {
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 10px;
-  align-items: center;
-}
-header nav .items .item {
-  width: 40px;
-  height: 40px;
-  display: flex;
+main.loading {
   justify-content: center;
   align-items: center;
-  color: inherit;
-  text-decoration: none;
-  border-radius: 4px;
+}
+main.loading.active {
+  display: flex;
+  opacity: 1;
+}
+main.login .logo {
+  width: 220px;
+  height: 22px;
+  margin: 0 auto 25px;
+  background: var(--logoLong) no-repeat center;
+  background-size: contain;
   transition: 0.2s ease all;
 }
-header nav .items .item .mdi {
-  color: #fff;
-  font-size: 22px;
-}
-header nav .items .item:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-header nav .items .divider {
-  height: 30px;
-  width: 2px;
+main.login .notification {
+  display: none;
+  border: 2px solid var(--colorPrimary);
+  padding: 10px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.4);
+  color: var(--colorTextLight);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: 0.2s ease all;
 }
-main {
-  padding: 100px 0;
+main.login .notification.active {
+  display: block;
+}
+main.login .login-form {
   display: grid;
-  grid-gap: 50px;
+  grid-gap: 15px;
 }
-.grid-wrapper {
-  width: 90%;
-  max-width: 1140px;
+main.login .login-form .actions {
+  text-align: center;
+}
+main.login .login-form .actions a {
+  color: var(--colorPrimary);
+  text-decoration: none;
+  font-size: 12px;
+  transition: 0.2s ease all;
+}
+main.login .login-form .actions a:hover {
+  opacity: 0.6;
+}
+main.active {
   display: grid;
-  margin: 0 auto;
+  opacity: 1;
 }
-.grid-wrapper.grid-nav {
-  grid-template-columns: 1fr auto;
-  grid-gap: 25px;
-  align-items: center;
+footer {
+  position: absolute;
+  bottom: 25px;
+  font-size: 12px;
+  left: 0;
+  right: 0;
+  opacity: 0.4;
+  text-align: center;
 }
-@media screen and (max-width: 1000px) {
-  main {
-    padding: 50px 0px;
-  }
-}
-/*# sourceMappingURL=dashboard.css.map */
+/*# sourceMappingURL=security.css.map */

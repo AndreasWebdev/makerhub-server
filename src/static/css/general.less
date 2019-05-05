@@ -117,3 +117,44 @@ button, .button {
     right: 0%;
   }
 }
+
+footer {
+  padding-bottom: 50px;
+
+  & .brand {
+    margin: auto;
+    width: 35px;
+    height: 22px;
+    background: var(--logoHat) center no-repeat;
+    background-size: contain;
+  }
+  & .items {
+    text-align: center;
+    margin: 15px auto auto;
+
+    & .copyright {
+      font-size: 0.8em;
+      margin-bottom: 10px;
+    }
+
+    & .disclaimer {
+      font-size: 0.65em;
+      opacity: 0.6;
+      margin-bottom: 10px;
+    }
+
+    & a {
+      font-size: 12px;
+      color: inherit;
+      display: block;
+      text-decoration: none;
+      margin-bottom: 5px;
+      transition: 0.2s ease opacity;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 0.3;
+      }
+    }
+  }
+}

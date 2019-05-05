@@ -1,9 +1,3 @@
-// Page Loading
-let domBody = document.querySelector("body");
-window.onload = function() {
-    domBody.classList.remove("loading");
-};
-
 // Scrolling
 function smoothScrollTo(elementSelector) {
     let elementToScroll = document.querySelector(elementSelector);
