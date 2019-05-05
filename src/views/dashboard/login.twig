@@ -26,14 +26,9 @@
             </script>
         </head>
         <body class="loading">
-            <main class="loading">
-                <div class="progress">
-                    <div class="progress-bar"></div>
-                </div>
-            </main>
-            <main class="login active">
+            <main class="login">
                 <div class="logo"></div>
-                {% if vars['error'] is defined %}
+                {% if vars['error'] is defined and vars['error'] != NULL %}
                     <div class="notification active">{{ vars['error'] }}</div>
                 {% else %}
                     <div class="notification"></div>
@@ -53,5 +48,6 @@
             </footer>
 
             <script src="/static/js/pageLoader.js"></script>
+            <script src="/static/js/security.login.js"></script>
         </body>
     </html>
