@@ -17,8 +17,8 @@ const registerLimiter = rateLimit({
 });
 
 router.route('/login').post(loginLimiter, function(req, res, next) {
-	let username = req.body.username;
-	let password = req.body.password;
+	let username = req.fields.username;
+	let password = req.fields.password;
 
 	if(username !== undefined && password !== undefined) {
 		// Check if user exists
@@ -54,7 +54,7 @@ router.route('/login').post(loginLimiter, function(req, res, next) {
 });
 
 router.route('/logout').post(function(req, res, next) {
-	let securityKey = req.body.key;
+	let securityKey = req.fields.key;
 
 	if(securityKey !== undefined) {
 		// Check if Security Key is valid
@@ -84,7 +84,7 @@ router.route('/logout').post(function(req, res, next) {
 });
 
 router.route('/ping').post(function(req, res, next) {
-	let securityKey = req.body.key;
+	let securityKey = req.fields.key;
 
 	if(securityKey !== undefined) {
 		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {
@@ -105,9 +105,9 @@ router.route('/ping').post(function(req, res, next) {
 });
 
 router.route('/register').post(registerLimiter, function(req, res, next) {
-	let qUsername = req.body.username;
-	let qPassword = req.body.password;
-	let qEmail = req.body.email;
+	let qUsername = req.fields.username;
+	let qPassword = req.fields.password;
+	let qEmail = req.fields.email;
 
 	if(qUsername !== undefined && qPassword !== undefined && qEmail !== undefined) {
 		// Check if username or password is already in use
@@ -144,7 +144,7 @@ router.route('/register').post(registerLimiter, function(req, res, next) {
 });
 
 router.route('/me').post(function(req, res, next) {
-	let securityKey = req.body.key;
+	let securityKey = req.fields.key;
 
 	if(securityKey !== undefined) {
 		db.query("SELECT * FROM users WHERE security_key = ?", [securityKey], function (error, results) {

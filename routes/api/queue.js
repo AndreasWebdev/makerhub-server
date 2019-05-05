@@ -10,12 +10,12 @@ const addLimiter = rateLimit({
 });
 
 router.route('/add').post(addLimiter, function(req, res, next) {
-	let qForUser = parseInt(req.body.forUser);
-	let qLevelCode = req.body.levelCode;
-	let qLevelTitle = req.body.levelTitle;
-	let qLevelCreator = req.body.levelCreator;
-	let qRequestedBy = req.body.requestedBy;
-	let qComment = req.body.comment;
+	let qForUser = parseInt(req.fields.forUser);
+	let qLevelCode = req.fields.levelCode;
+	let qLevelTitle = req.fields.levelTitle;
+	let qLevelCreator = req.fields.levelCreator;
+	let qRequestedBy = req.fields.requestedBy;
+	let qComment = req.fields.comment;
 	let qRequestedTime = new Date().valueOf()/1000;
 
 	if(qForUser !== undefined && qLevelCode !== undefined && qLevelTitle !== undefined && qLevelCreator !== undefined) {
@@ -51,10 +51,10 @@ router.route('/add').post(addLimiter, function(req, res, next) {
 });
 
 router.route('/complete').post(function(req, res, next) {
-	let securityKey = req.body.key;
-	let qLevelID = parseInt(req.body.levelID);
-	let qCompletedTime = ((req.body.completedTime !== false) ? new Date().valueOf()/1000 : false);
-	let qHighscoreTime = parseInt(req.body.highscoreTime);
+	let securityKey = req.fields.key;
+	let qLevelID = parseInt(req.fields.levelID);
+	let qCompletedTime = ((req.fields.completedTime !== false) ? new Date().valueOf()/1000 : false);
+	let qHighscoreTime = parseInt(req.fields.highscoreTime);
 
 	if(securityKey !== undefined && qLevelID !== undefined && qCompletedTime !== undefined && qHighscoreTime !== undefined) {
 		// Get Queue Item
@@ -97,8 +97,8 @@ router.route('/complete').post(function(req, res, next) {
 });
 
 router.route('/toggle').post(function(req, res, next) {
-	let securityKey = req.body.key;
-	let qNewStatus = req.body.newStatus || false;
+	let securityKey = req.fields.key;
+	let qNewStatus = req.fields.newStatus || false;
 
 	if(securityKey !== undefined && qNewStatus !== undefined) {
 		db.query("UPDATE `users` SET `queueOpen` = ? WHERE `security_key` = ?", [qNewStatus, securityKey], function (error) {
@@ -116,7 +116,7 @@ router.route('/toggle').post(function(req, res, next) {
 });
 
 router.route('/pending').post(function(req, res, next) {
-	let securityKey = req.body.key;
+	let securityKey = req.fields.key;
 
 	if(securityKey !== undefined) {
 		db.query("SELECT queue.*, history.highscoreTime, history.completedTime FROM levelqueue AS queue LEFT JOIN levelhistory as history ON history.id = (SELECT history2.id FROM levelhistory AS history2 WHERE history2.levelcode = queue.levelcode AND history2.completedTime > 0 AND history2.highscoreTime > 0 ORDER BY history2.highscoreTime ASC LIMIT 1) WHERE queue.forUser = (SELECT id FROM users WHERE security_key = ?) GROUP BY queue.id", [securityKey], function (error, results) {
