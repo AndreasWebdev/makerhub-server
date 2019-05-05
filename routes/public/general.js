@@ -14,4 +14,8 @@ router.route('/privacy').get(function(req, res, next) {
 	res.render(path.join(__dirname, '../../src/views/public/privacy.twig'));
 });
 
+router.route('/tos').get(function(req, res, next) {
+	res.render(path.join(__dirname, '../../src/views/public/tos.twig'));
+});
+
 module.exports = router;
