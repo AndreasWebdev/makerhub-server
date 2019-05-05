@@ -26,6 +26,7 @@
     "express": "^4.16.4",
     "express-formidable": "^1.2.0",
     "express-rate-limit": "^3.5.0",
+    "express-session": "^1.16.1",
     "mongodb": "^3.2.3",
     "mysql": "^2.17.1",
     "nanoid": "^2.0.1",

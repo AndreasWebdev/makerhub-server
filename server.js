@@ -30,6 +30,7 @@ if(config.version === undefined) {
 
 const express = require('express');
 const formidableMiddleware = require('express-formidable');
+const session = require('express-session');
 const app = express();
 const twig = require("twig");
 
@@ -47,6 +48,11 @@ if(env === 'development') {
 
 // Enable form requests
 app.use(formidableMiddleware());
+app.use(session({
+	secret: 'mhs',
+	resave: true,
+	saveUninitialized: true
+}));
 
 // Setup Database Connection
 const db = require('./db');
