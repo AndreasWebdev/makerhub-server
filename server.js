@@ -66,7 +66,6 @@ app.use('/', require('./routes/public/general'));
 app.use('/u/', require('./routes/public/profile'));
 
 logger.Log("[ROUTES] Loading API Routes...");
-
 app.get('/api/', (req, res) => {
 	return res.sendStatus(200);
 });
