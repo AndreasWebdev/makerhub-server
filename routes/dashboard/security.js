@@ -7,7 +7,7 @@ router.route('/login').get(function(req, res, next) {
 	let sessionKey = req.session.key;
 
 	if(sessionKey) {
-		mhsApi.ping(sessionKey).then(apiRes => {
+		mhsApi.ping(sessionKey).then(function(apiRes) {
 			if(apiRes) {
 				res.redirect('/dashboard');
 			} else {
@@ -25,7 +25,9 @@ router.route('/login').get(function(req, res, next) {
 	let username = req.fields.login_username;
 	let password = req.fields.login_password;
 
-	mhsApi.login(username, password).then(apiRes => {
+	mhsApi.login(username, password).then(function(apiRes) {
+		console.log(apiRes);
+
 		if(apiRes.status === 200) {
 			// Set Session
 			req.session.key = apiRes.data.key;
@@ -56,7 +58,7 @@ router.route('/logout').get(function(req, res, next) {
 
 	if(sessionKey) {
 		// Logout from API
-		mhsApi.logout(req.session.key).then(apiRes => {
+		mhsApi.logout(req.session.key).then(function(apiRes) {
 			// Remove Session
 			req.session.key = "";
 

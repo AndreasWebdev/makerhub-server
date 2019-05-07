@@ -6,7 +6,7 @@ const mhsApi = require('../makerhubserver-api.js');
 router.route('/').get(function(req, res, next) {
 	let sessionKey = req.session.key;
 
-	mhsApi.ping(sessionKey).then(apiRes => {
+	mhsApi.ping(sessionKey).then(function(apiRes) {
 		if(apiRes) {
 			res.sendStatus(200);
 		} else {
