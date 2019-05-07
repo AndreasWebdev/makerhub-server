@@ -13,6 +13,8 @@ router.route('/login').get(function(req, res, next) {
 			} else {
 				res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
 			}
+		}).catch(error => {
+			next(error);
 		});
 	} else {
 		res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'));
@@ -40,6 +42,8 @@ router.route('/login').get(function(req, res, next) {
 			vars["error"] = "Unknown Server Error. Please try again later!";
 			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
 		}
+	}).catch(error => {
+		next(error);
 	});
 });
 
@@ -58,6 +62,8 @@ router.route('/logout').get(function(req, res, next) {
 
 			// Redirect to Login
 			res.redirect('/dashboard/login');
+		}).catch(error => {
+			next(error);
 		});
 	} else {
 		res.redirect('/dashboard/login');
