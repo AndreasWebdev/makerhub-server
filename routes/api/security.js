@@ -51,7 +51,7 @@ router.route('/login').post(loginLimiter, function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/logout').post(function(req, res, next) {
 	let securityKey = req.fields.key;
@@ -81,7 +81,7 @@ router.route('/logout').post(function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/ping').post(function(req, res, next) {
 	let securityKey = req.fields.key;
@@ -102,7 +102,7 @@ router.route('/ping').post(function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/register').post(registerLimiter, function(req, res, next) {
 	let qUsername = req.fields.username;
@@ -141,7 +141,7 @@ router.route('/register').post(registerLimiter, function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/me').post(function(req, res, next) {
 	let securityKey = req.fields.key;
@@ -165,6 +165,6 @@ router.route('/me').post(function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 module.exports = router;

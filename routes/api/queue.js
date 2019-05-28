@@ -48,7 +48,7 @@ router.route('/add').post(addLimiter, function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/complete').post(function(req, res, next) {
 	let securityKey = req.fields.key;
@@ -94,7 +94,7 @@ router.route('/complete').post(function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/toggle').post(function(req, res, next) {
 	let securityKey = req.fields.key;
@@ -113,7 +113,7 @@ router.route('/toggle').post(function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 router.route('/pending').post(function(req, res, next) {
 	let securityKey = req.fields.key;
@@ -130,6 +130,6 @@ router.route('/pending').post(function(req, res, next) {
 		res.status(422);
 		res.send(JSON.stringify("Required parameter missing! Please consult the docs!"));
 	}
-});
+}).get(function(req, res) { res.sendStatus(405)});
 
 module.exports = router;
