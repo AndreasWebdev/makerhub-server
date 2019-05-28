@@ -26,20 +26,23 @@ router.route('/login').get(function(req, res, next) {
 	let password = req.fields.login_password;
 
 	mhsApi.login(username, password).then(function(apiRes) {
-		console.log(apiRes);
+		if(apiRes) {
+			if (apiRes.status === 200) {
+				// Set Session
+				req.session.key = apiRes.data.key;
 
-		if(apiRes.status === 200) {
-			// Set Session
-			req.session.key = apiRes.data.key;
-
-			// Redirect
-			res.redirect('/dashboard');
-		} else if(apiRes.status === 403 || apiRes.status === 404) {
-			vars["error"] = "The username and password you entered did not match our records. Please double-check and try again";
-			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
-		} else if(apiRes.status === 429) {
-			vars["error"] = "Too many failed login attempts! Please try again in 5 minutes!";
-			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+				// Redirect
+				res.redirect('/dashboard');
+			} else if (apiRes.status === 403 || apiRes.status === 404) {
+				vars["error"] = "The username and password you entered did not match our records. Please double-check and try again";
+				res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+			} else if (apiRes.status === 429) {
+				vars["error"] = "Too many failed login attempts! Please try again in 5 minutes!";
+				res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+			} else {
+				vars["error"] = "Unknown Server Error. Please try again later!";
+				res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
+			}
 		} else {
 			vars["error"] = "Unknown Server Error. Please try again later!";
 			res.render(path.join(__dirname, '../../src/views/dashboard/login.twig'), {vars: vars});
