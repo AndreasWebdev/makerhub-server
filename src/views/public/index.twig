@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            {% include './fragments/header.twig' %}
+        </head>
+        <body class="loading">
+            <header>
+                <nav class="grid-wrapper grid-nav">
+                    <a href="/"><div class="brand"></div></a>
+
+                    <div class="items">
+                        <a href="https://discord.gg/dUkqYVM" target="_blank" class="item"><i class="mdi mdi-discord"></i></a>
+                        <a href="https://twitter.com/makerhub_studio" target="_blank" class="item"><i class="mdi mdi-twitter"></i></a>
+                        <a href="https://www.youtube.com/channel/UC_pOzAJ9p5IyNnApUNDln5g/" target="_blank" class="item"><i class="mdi mdi-youtube"></i></a>
+
+                        <div class="divider"></div>
+
+                        <a href="/dashboard/login" class="button">Login</a>
+                        <a href="/dashboard/register" class="button">Register</a>
+                    </div>
+                </nav>
+
+                <section class="grid-wrapper grid-jumbotron section-jumbotron">
+                    <div class="copy">
+                        <h1 class="typo-header">Super Mario Maker 2™ level queue for your livestream or video!</h1>
+                        <p class="typo-default">MakerHub Studio is the first easy-to-use queue system for your Super Mario Maker 2™ livestreams and videos! Let your fans recommend levels for you to play and track your personal highscores across streaming sessions!</p>
+                    </div>
+                    <div class="video">
+                        <a href="https://youtu.be/lZfackQzmN4" target="_blank" class="thumbnail">
+                            <div class="text">
+                                <i class="mdi mdi-play-circle"></i>
+                                <span>Watch our trailer!</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </header>
+
+            <main>
+                <section class="section-features grid-wrapper grid-features">
+                    <div class="feature">
+                        <div class="illustration">
+                            <img src="/static/img/illustrationQueue.svg" alt="YourQueue" />
+                        </div>
+                        <div class="copy">
+                            <h1 class="typo-header">Your<br />Queue</h1>
+                            <p class="typo-default">Connect with your viewers like never before or gather a collection of fan-created content for your next livestream or video!</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="illustration">
+                            <img src="/static/img/illustrationTimer.svg" alt="YourTimer" />
+                        </div>
+                        <div class="copy">
+                            <h1 class="typo-header">Your<br />Timer</h1>
+                            <p class="typo-default">Track your best time for recurring levels no matter who requested it in your queue! Or keep calm and play at your own pace, you decide!</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="illustration">
+                            <img src="/static/img/illustrationOverlay.svg" alt="YourOverlay" />
+                        </div>
+                        <div class="copy">
+                            <h1 class="typo-header">Your<br />Overlay</h1>
+                            <p class="typo-default">Give your viewers a quick access to the content you are currently playing. Fully customize your overlay to match your channels branding and use any streaming software with a browser source!</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="illustration">
+                            <img src="/static/img/illustrationPage.svg" alt="YourPage" />
+                        </div>
+                        <div class="copy">
+                            <h1 class="typo-header">Your<br />Page</h1>
+                            <p class="typo-default">Let your fans request levels for your queue with a fully customizable microsite to match your channels branding.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section-pricing grid-wrapper grid-pricing">
+                    <div class="pricing">
+                        <h1 class="typo-header">Pricing</h1>
+                        <p class="typo-default">We love the Super Mario Maker community and want to give back as much as possible! With our VIP status, you can get the most out of MakerHub Studio and fund the development while also keeping the server cost down.</p>
+                    </div>
+                    <div class="pricing">
+                        <h1 class="typo-header"><div class="logoHat"></div> Free</h1>
+                        <p class="typo-default">MakerHub Studio Free contains all basic functionality to get your stream up and running! There are no queue limitations and you can customize your page through the dashboard. To cover the costs of our servers, we might display ads on the dashboard or your page, but let's be honest, you probably are using an Adblocker anyways.</p>
+                        <div class="release"><a href="./dashboard/register" class="button">Register now!</a></div>
+                    </div>
+                    <div class="pricing">
+                        <h1 class="typo-header"><div class="logoHat"></div> VIP</h1>
+                        <p class="typo-default">MakerHub Studio VIP is for those, who want to take their stream to the next level! You will not only support the development of this project but gain access to our powerful customization tools to use custom CSS and HTML on your page and stream overlay! You will also gain access to our VIP support on Discord and have a direct feedback channel to our developers.</p>
+                        <div class="release">$4.99 / month</div>
+                    </div>
+                </section>
+
+                <section class="section-beyond grid-wrapper grid-beyond">
+                    <h1 class="typo-header">And beyond...</h1>
+                    <p class="typo-default">We are committed to provide the best service for Super Mario Maker 2™. This also means we are looking at the future! After empowering streamers and content creators, we will actively work to empower level creators as well and expand MakerHub Studio to a full-blown Super Mario Maker 2™ level sharing plattform with the ability to categorize your levels into full adventures, ready to share with your friends and anyone else in the world.</p>
+                </section>
+            </main>
+
+            {% include './fragments/footer.twig' %}
+        </body>
+    </html>

@@ -1,0 +1,252 @@
+:root {
+  --colorBackground: #444444;
+  --colorBackgroundSecondary: #575757;
+  --colorBackgroundDark: #2D2D2D;
+  --logoLong: url('../img/LogoLong.svg');
+  --logoHat: url('../img/LogoHat.svg');
+  --colorPrimary: #D73534;
+  --colorPrimaryDark: #b93131;
+  --colorPrimaryDarkest: #a52c2c;
+  --colorPrimaryText: #fff;
+}
+input[type="text"],
+input[type="password"] {
+  font-family: "Product Sans", sans-serif;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 6px 16px;
+  transition: 0.2s ease all;
+}
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #fff;
+  opacity: 0.6;
+  transition: 0.2s ease all;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background: transparent;
+  border-color: var(--colorPrimary);
+  outline: 0;
+}
+button,
+.button {
+  font-family: "Product Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--colorPrimaryText);
+  background: var(--colorPrimary);
+  border-radius: 4px;
+  border: 0;
+  padding: 10px 15px;
+  transition: 0.2s ease background;
+  text-decoration: none;
+}
+button.login,
+.button.login {
+  display: block;
+  padding: 10px 70px;
+  margin: 0 auto 10px;
+}
+button:hover,
+.button:hover {
+  background: var(--colorPrimaryDark);
+  cursor: pointer;
+}
+button:active,
+.button:active {
+  background: var(--colorPrimaryDarkest);
+}
+button:focus,
+.button:focus {
+  outline: 0;
+}
+button.button-action,
+.button.button-action {
+  background: var(--colorBackground);
+  color: var(--colorPrimary);
+  padding: 5px 15px;
+  font-weight: 600;
+  transition: 0.2s ease all;
+}
+button.button-action:hover,
+.button.button-action:hover {
+  background: var(--colorPrimary);
+  color: var(--colorPrimaryText);
+}
+button.button-icon,
+.button.button-icon {
+  padding: 6px 11px;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 15px;
+}
+button.button-icon .icon,
+.button.button-icon .icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.button-icon .icon .mdi,
+.button.button-icon .icon .mdi {
+  font-size: 22px;
+}
+button.button-icon .text,
+.button.button-icon .text {
+  align-self: center;
+}
+button.button-disabled,
+.button.button-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: var(--colorPrimary);
+}
+.progress {
+  background: var(--colorBackgroundSecondary);
+  height: 4px;
+  width: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  left: 0;
+  background: var(--colorPrimary);
+  position: absolute;
+  animation-name: animIndeterminate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  transition: 1s ease all;
+}
+@keyframes animIndeterminate {
+  0% {
+    left: 0%;
+    right: 100%;
+  }
+  25% {
+    left: 0%;
+    right: 0%;
+  }
+  100% {
+    left: 100%;
+    right: 0%;
+  }
+}
+footer {
+  padding-bottom: 50px;
+}
+footer .brand {
+  margin: auto;
+  width: 35px;
+  height: 22px;
+  background: var(--logoHat) center no-repeat;
+  background-size: contain;
+}
+footer .items {
+  text-align: center;
+  margin: 15px auto auto;
+}
+footer .items .copyright {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+footer .items .disclaimer {
+  font-size: 0.65em;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+footer .items a {
+  font-size: 12px;
+  color: inherit;
+  display: block;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: 0.2s ease opacity;
+  opacity: 0.6;
+}
+footer .items a:hover {
+  opacity: 0.3;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+body {
+  background: var(--colorBackground);
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--colorPrimaryText);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s ease all;
+  transform: translate(0px, 0px);
+}
+body.loading {
+  opacity: 0;
+  transform: translate(0px, 10px);
+}
+body.loading * {
+  transition: none !important;
+}
+main {
+  display: grid;
+  width: 250px;
+  grid-gap: 15px;
+  position: relative;
+}
+main.login .logo {
+  width: 220px;
+  height: 22px;
+  margin: 0 auto 25px;
+  background: var(--logoLong) no-repeat center;
+  background-size: contain;
+  transition: 0.2s ease all;
+}
+main.login .notification {
+  display: none;
+  border: 2px solid var(--colorPrimary);
+  padding: 10px;
+  border-radius: 4px;
+  color: var(--colorTextLight);
+  font-size: 14px;
+  line-height: 1.5;
+  transition: 0.2s ease all;
+}
+main.login .notification.active {
+  display: block;
+}
+main.login .login-form {
+  display: grid;
+  grid-gap: 15px;
+}
+main.login .login-form .actions {
+  text-align: center;
+}
+main.login .login-form .actions a {
+  color: var(--colorPrimary);
+  text-decoration: none;
+  font-size: 12px;
+  transition: 0.2s ease all;
+}
+main.login .login-form .actions a:hover {
+  opacity: 0.6;
+}
+footer {
+  position: absolute;
+  bottom: 25px;
+  font-size: 12px;
+  left: 0;
+  right: 0;
+  opacity: 0.4;
+  text-align: center;
+}
+/*# sourceMappingURL=security.css.map */

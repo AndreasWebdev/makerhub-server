@@ -29,24 +29,53 @@ if(config.version === undefined) {
 }
 
 const express = require('express');
-const bodyParser = require('body-parser');
+const formidableMiddleware = require('express-formidable');
+const session = require('express-session');
 const app = express();
+const twig = require("twig");
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.set( 'view engine', 'twig' );
+app.set("twig options", {
+    allow_async: true,
+    strict_variables: false
+});
+
+// Disable Cache on Dev
+if(env === 'development') {
+	twig.cache(false);
+	app.set('cache', false);
+}
+
+// Enable form requests
+app.use(formidableMiddleware());
+app.use(session({
+	secret: 'mhs',
+	resave: true,
+	saveUninitialized: true
+}));
 
 // Setup Database Connection
 const db = require('./db');
 
 // Setup Routes
-logger.Log("[ROUTES] Loading Routes...");
+logger.Log("[ROUTES] Loading Static File Routes...");
+app.use('/static/', express.static(__dirname + '/src/static', {etag: false}));
 
-app.get('/', (req, res) => {
+logger.Log("[ROUTES] Loading Public Routes...");
+app.use('/', require('./routes/public/general'));
+app.use('/u/', require('./routes/public/profile'));
+
+logger.Log("[ROUTES] Loading API Routes...");
+app.get('/api/', (req, res) => {
 	return res.sendStatus(200);
 });
 
-app.use('/security', require('./routes/security'));
-app.use('/queue', require('./routes/queue'));
+app.use('/api/security', require('./routes/api/security'));
+app.use('/api/queue', require('./routes/api/queue'));
+
+logger.Log("[ROUTES] Loading Dashboard Routes...");
+app.use('/dashboard', require('./routes/dashboard/dashboard'));
+app.use('/dashboard', require('./routes/dashboard/security'));
 
 // Error Handling
 app.use(function(err, req, res, next) {

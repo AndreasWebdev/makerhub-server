@@ -1,0 +1,280 @@
+:root {
+  --colorBackground: #444444;
+  --colorBackgroundSecondary: #575757;
+  --colorBackgroundDark: #2D2D2D;
+  --logoLong: url('../img/LogoLong.svg');
+  --logoHat: url('../img/LogoHat.svg');
+  --colorPrimary: #D73534;
+  --colorPrimaryDark: #b93131;
+  --colorPrimaryDarkest: #a52c2c;
+  --colorPrimaryText: #fff;
+}
+input[type="text"],
+input[type="password"] {
+  font-family: "Product Sans", sans-serif;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 6px 16px;
+  transition: 0.2s ease all;
+}
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+  color: #fff;
+  opacity: 0.6;
+  transition: 0.2s ease all;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background: transparent;
+  border-color: var(--colorPrimary);
+  outline: 0;
+}
+button,
+.button {
+  font-family: "Product Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--colorPrimaryText);
+  background: var(--colorPrimary);
+  border-radius: 4px;
+  border: 0;
+  padding: 10px 15px;
+  transition: 0.2s ease background;
+  text-decoration: none;
+}
+button.login,
+.button.login {
+  display: block;
+  padding: 10px 70px;
+  margin: 0 auto 10px;
+}
+button:hover,
+.button:hover {
+  background: var(--colorPrimaryDark);
+  cursor: pointer;
+}
+button:active,
+.button:active {
+  background: var(--colorPrimaryDarkest);
+}
+button:focus,
+.button:focus {
+  outline: 0;
+}
+button.button-action,
+.button.button-action {
+  background: var(--colorBackground);
+  color: var(--colorPrimary);
+  padding: 5px 15px;
+  font-weight: 600;
+  transition: 0.2s ease all;
+}
+button.button-action:hover,
+.button.button-action:hover {
+  background: var(--colorPrimary);
+  color: var(--colorPrimaryText);
+}
+button.button-icon,
+.button.button-icon {
+  padding: 6px 11px;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-gap: 15px;
+}
+button.button-icon .icon,
+.button.button-icon .icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button.button-icon .icon .mdi,
+.button.button-icon .icon .mdi {
+  font-size: 22px;
+}
+button.button-icon .text,
+.button.button-icon .text {
+  align-self: center;
+}
+button.button-disabled,
+.button.button-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background: var(--colorPrimary);
+}
+.progress {
+  background: var(--colorBackgroundSecondary);
+  height: 4px;
+  width: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  left: 0;
+  background: var(--colorPrimary);
+  position: absolute;
+  animation-name: animIndeterminate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  transition: 1s ease all;
+}
+@keyframes animIndeterminate {
+  0% {
+    left: 0%;
+    right: 100%;
+  }
+  25% {
+    left: 0%;
+    right: 0%;
+  }
+  100% {
+    left: 100%;
+    right: 0%;
+  }
+}
+footer {
+  padding-bottom: 50px;
+}
+footer .brand {
+  margin: auto;
+  width: 35px;
+  height: 22px;
+  background: var(--logoHat) center no-repeat;
+  background-size: contain;
+}
+footer .items {
+  text-align: center;
+  margin: 15px auto auto;
+}
+footer .items .copyright {
+  font-size: 0.8em;
+  margin-bottom: 10px;
+}
+footer .items .disclaimer {
+  font-size: 0.65em;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+footer .items a {
+  font-size: 12px;
+  color: inherit;
+  display: block;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: 0.2s ease opacity;
+  opacity: 0.6;
+}
+footer .items a:hover {
+  opacity: 0.3;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  background: var(--colorBackground);
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.6);
+  transform: translate(0px, 0px);
+  transition: 0.2s ease opacity, 0.2s ease transform;
+}
+body.loading {
+  opacity: 0;
+  transform: translate(0px, 10px);
+}
+body.loading * {
+  transition: none !important;
+}
+.typo-header {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+}
+.typo-default {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.6);
+}
+header {
+  background: url('../img/jumbotronBG.png') center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+header nav {
+  padding: 25px 0;
+}
+header nav .brand {
+  width: 220px;
+  height: 22px;
+  background: var(--logoLong) center no-repeat;
+  background-size: contain;
+}
+header nav .items {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  align-items: center;
+}
+header nav .items .item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: 0.2s ease all;
+}
+header nav .items .item .mdi {
+  color: #fff;
+  font-size: 22px;
+}
+header nav .items .item:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+header nav .items .divider {
+  height: 30px;
+  width: 2px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.4);
+}
+main {
+  padding: 100px 0;
+  display: grid;
+  grid-gap: 50px;
+}
+.grid-wrapper {
+  width: 90%;
+  max-width: 1140px;
+  display: grid;
+  margin: 0 auto;
+}
+.grid-wrapper.grid-nav {
+  grid-template-columns: 1fr auto;
+  grid-gap: 25px;
+  align-items: center;
+}
+@media screen and (max-width: 1000px) {
+  main {
+    padding: 50px 0px;
+  }
+}
+/*# sourceMappingURL=dashboard.css.map */

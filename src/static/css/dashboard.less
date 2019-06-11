@@ -1,0 +1,131 @@
+@import "theme";
+@import "general";
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  background: var(--colorBackground);
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(255,255,255,0.6);
+  transform: translate(0px, 0px);
+  transition: 0.2s ease opacity, 0.2s ease transform;
+
+  &.loading {
+    opacity: 0;
+    transform: translate(0px, 10px);
+
+    & * {
+      transition: none !important;
+    }
+  }
+}
+
+.typo-header {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0;
+  margin: 0;
+  color: rgba(255,255,255,1);
+}
+.typo-default {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.6);
+}
+
+header {
+  background: url('../img/jumbotronBG.png') center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+  & nav {
+    padding: 25px 0;
+
+    & .brand {
+      width: 220px;
+      height: 22px;
+      background: var(--logoLong) center no-repeat;
+      background-size: contain;
+    }
+
+    & .items {
+      display: grid;
+      grid-auto-flow: column;
+      grid-gap: 10px;
+      align-items: center;
+
+      & .item {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: inherit;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: 0.2s ease all;
+
+        & .mdi {
+          color: #fff;
+          font-size: 22px;
+        }
+        &:hover {
+          background: rgba(255,255,255,0.2);
+        }
+      }
+      & .divider {
+        height: 30px;
+        width: 2px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.4);
+      }
+    }
+  }
+}
+
+main {
+  padding: 100px 0;
+  display: grid;
+  grid-gap: 50px;
+}
+.grid-wrapper {
+  width: 90%;
+  max-width: 1140px;
+  display: grid;
+  margin: 0 auto;
+
+  &.grid-nav{
+    grid-template-columns: 1fr auto;
+    grid-gap: 25px;
+    align-items: center;
+  }
+}
+
+// Tablet
+@media screen and (max-width: 1200px) {
+  header {
+  }
+  .grid-wrapper {
+  }
+}
+
+// Mobile
+@media screen and (max-width: 1000px) {
+  header {
+  }
+  main {
+    padding: 50px 0px;
+  }
+  .grid-wrapper {
+  }
+}
